@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WantPrompt — Free AI Prompt Library</title>
+<meta name="description" content="WantPrompt is a free, searchable library of high-quality AI prompts for writing, marketing, business, coding, image generation and more. Copy, customize, run them with built-in free AI, or let Agent Mode draft, critique and polish for you.">
+<meta property="og:title" content="WantPrompt — Free AI Prompt Library">
+<meta property="og:description" content="72 hand-crafted AI prompts. Search, customize, run with free built-in AI, or use Agent Mode. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wantprompt.com/">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#" id="homeLink">💡 Want<span>Prompt</span></a>
+    <div class="header-actions">
+      <button id="randomBtn" class="btn ghost" title="Open a random prompt">🎲 Surprise me</button>
+      <button id="favsBtn" class="btn ghost" title="Show saved prompts">♥ <span id="favCount">0</span></button>
+    </div>
+  </div>
+  <div class="hero">
+    <h1>Find the right prompt, <em>run it instantly.</em></h1>
+    <p>A free library of hand-crafted AI prompts. Search, customize the <code>[variables]</code>, then run it right here with built-in AI — or let <strong>Agent Mode</strong> draft, critique &amp; polish for you.</p>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search prompts… try &quot;email&quot;, &quot;logo&quot;, &quot;resume&quot;" autocomplete="off" aria-label="Search prompts">
+      <span class="search-hint"><kbd>/</kbd> to search</span>
+    </div>
+    <div class="potd" id="potd" hidden>
+      <span class="potd-label">✨ Prompt of the day</span>
+      <button class="potd-link" id="potdLink"></button>
+    </div>
+  </div>
+  <nav class="cats" id="cats" aria-label="Categories"></nav>
+</header>
+
+<main>
+  <div class="result-meta"><span id="resultCount"></span><span id="activeFilter"></span></div>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" hidden>
+    <p>😶 No prompts match that search.</p>
+    <button class="btn" id="clearSearch">Clear search</button>
+  </div>
+</main>
+
+<footer>
+  <p>WantPrompt.com — free forever. Made for people who talk to AI.</p>
+  <p class="fine">AI runs on a free shared service — it can be slow at peak times. Have a prompt worth adding? <a href="mailto:hello@wantprompt.com?subject=Prompt%20submission">Send it in</a> · <a href="mailto:hello@wantprompt.com?subject=Interested%20in%20wantprompt.com">Interested in acquiring this site?</a></p>
+</footer>
+
+<div class="modal-backdrop" id="modalBackdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head">
+      <div>
+        <span class="badge" id="modalCat"></span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDesc"></p>
+      </div>
+      <button class="icon-btn" id="modalClose" aria-label="Close">✕</button>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="prompt">📋 Prompt</button>
+      <button class="tab" data-tab="run">▶ Try with AI</button>
+      <button class="tab" data-tab="agent">🤖 Agent mode</button>
+    </div>
+
+    <div class="tabpane" id="pane-prompt">
+      <div class="vars" id="modalVars"></div>
+      <pre class="prompt-text" id="modalText"></pre>
+      <div class="modal-foot">
+        <button class="icon-btn" id="modalFav" aria-label="Save to favorites">♡</button>
+        <button class="btn primary" id="modalCopy">📋 Copy prompt</button>
+      </div>
+      <div class="copied-tip" id="copiedTip" hidden>Copied! Paste it into ChatGPT, Claude, Gemini…</div>
+    </div>
+
+    <div class="tabpane" id="pane-run" hidden>
+      <p class="pane-hint">Your customized prompt runs on free built-in AI. No signup, no key.</p>
+      <div class="run-controls">
+        <button class="btn primary" id="runBtn">▶ Run prompt</button>
+        <button class="btn ghost" id="runRegen" hidden>↻ Regenerate</button>
+        <button class="btn ghost" id="runCopyResp" hidden>📋 Copy response</button>
+      </div>
+      <div class="ai-status" id="runStatus" hidden><span class="spinner"></span><span id="runStatusText">Thinking…</span></div>
+      <pre class="ai-output" id="runOutput" hidden></pre>
+      <div class="ai-error" id="runError" hidden></div>
+    </div>
+
+    <div class="tabpane" id="pane-agent" hidden>
+      <p class="pane-hint">Agent mode runs your prompt through 3 autonomous steps: <strong>draft → critique → polished final</strong>. Watch it work.</p>
+      <div class="run-controls">
+        <button class="btn primary" id="agentBtn">🤖 Run agent</button>
+        <button class="btn ghost" id="agentCopyFinal" hidden>📋 Copy final</button>
+      </div>
+      <div class="agent-steps" id="agentSteps"></div>
+      <div class="ai-error" id="agentError" hidden></div>
+    </div>
+
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
