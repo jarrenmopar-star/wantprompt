@@ -95,7 +95,7 @@ function renderCats() {
     const b = document.createElement("button");
     b.className = "cat" + (state.cat === c ? " active" : "");
     b.textContent = c + (c === "All" ? "" : " · " + state.prompts.filter(p => p.category === c).length);
-    b.onclick = () => { state.cat = c; state.favsOnly = false; render(); };
+    b.onclick = () => { state.cat = c; state.favsOnly = false; state.q = ""; $("search").value = ""; render(); window.scrollTo(0, 0); };
     catsEl.appendChild(b);
   });
 }
