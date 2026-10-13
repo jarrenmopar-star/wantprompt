@@ -10,26 +10,59 @@ function updateFavCount() { $("favCount").textContent = state.favs.size; }
 function esc(s) { return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 
 /* ---------- free AI backend ---------- */
-async function aiChat(messages, attempt) {
-  attempt = attempt || 1;
-  const res = await fetch("https://text.pollinations.ai/openai", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ model: "openai-fast", messages, private: true })
+// Pollinations' anonymous tier allows roughly 1 request per 15s per IP.
+// A 402/429 means the shared free quota is tapped out right now —
+// so we throttle client-side and retry with backoff instead of failing fast.
+const AI_MIN_GAP = 15000;                    // ms between AI calls
+const AI_RETRY_DELAYS = [12000, 20000, 30000]; // backoff between retries
+let lastAiAt = 0;
+
+function aiWait(ms, onStatus, label) {
+  return new Promise(resolve => {
+    let left = Math.ceil(ms / 1000);
+    if (onStatus) onStatus(label + " (" + left + "s)…");
+    const iv = setInterval(() => {
+      left--;
+      if (left <= 0) { clearInterval(iv); resolve(); }
+      else if (onStatus) onStatus(label + " (" + left + "s)…");
+    }, 1000);
   });
-  if (!res.ok) throw new Error("status " + res.status);
-  const data = await res.json();
-  const content = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
-  if (!content && attempt < 3) {
-    await new Promise(r => setTimeout(r, 1500));
-    return aiChat(messages, attempt + 1);
-  }
-  if (!content) throw new Error("empty response");
-  return content.trim();
 }
-function aiErrorHTML(err) {
-  return "⚠️ The free AI is busy or unreachable right now (" + esc(err.message || "error") + "). " +
-    "Wait a minute and try again — or copy the prompt and run it in ChatGPT / Claude / Gemini instead.";
+
+async function aiChat(messages, onStatus) {
+  // Stay inside the free tier's rate limit instead of hammering it.
+  const gap = AI_MIN_GAP - (Date.now() - lastAiAt);
+  if (gap > 0) await aiWait(gap, onStatus, "Waiting for the free AI");
+  let lastErr = new Error("unreachable");
+  for (let attempt = 0; ; attempt++) {
+    try {
+      lastAiAt = Date.now();
+      const res = await fetch("https://text.pollinations.ai/openai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ model: "openai-fast", messages, private: true })
+      });
+      if (res.status === 402 || res.status === 429 || res.status >= 500) throw new Error("busy");
+      if (!res.ok) throw new Error("hard:" + res.status);
+      const data = await res.json();
+      const c = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+      if (c && c.trim()) return c.trim();
+      throw new Error("busy"); // empty body — treat like a busy backend
+    } catch (err) {
+      lastErr = err;
+      const retryable = err instanceof TypeError || err.message === "busy";
+      if (retryable && attempt < AI_RETRY_DELAYS.length) {
+        await aiWait(AI_RETRY_DELAYS[attempt], onStatus, "Free AI is busy, retrying");
+        continue;
+      }
+      break;
+    }
+  }
+  throw lastErr;
+}
+function aiErrorHTML() {
+  return "⚠️ The free AI stayed busy after several tries. " +
+    "Wait a minute and tap Run again — or copy the prompt and run it in ChatGPT / Claude / Gemini instead.";
 }
 
 /* ---------- variables ---------- */
@@ -169,11 +202,11 @@ async function runPrompt() {
     const out = await aiChat([
       { role: "system", content: "You are a helpful AI assistant. Follow the user's instructions exactly and completely." },
       { role: "user", content: filled }
-    ]);
+    ], t => { $("runStatusText").textContent = t; });
     $("runOutput").textContent = out; $("runOutput").hidden = false;
     $("runRegen").hidden = false; $("runCopyResp").hidden = false;
   } catch (err) {
-    $("runError").innerHTML = aiErrorHTML(err); $("runError").hidden = false;
+    $("runError").innerHTML = aiErrorHTML(); $("runError").hidden = false;
   }
   $("runStatus").hidden = true; $("runBtn").disabled = false;
 }
@@ -200,6 +233,10 @@ async function runAgent() {
   resetAgentPane();
   $("agentBtn").disabled = true; $("agentError").hidden = true;
   const filled = fillVars(p, currentValues(p));
+  const agentStatus = t => {
+    const el = document.querySelector(".agent-step.working .agent-state");
+    if (el) el.textContent = "⏳ " + t;
+  };
   const s1 = agentStepEl(1, "Draft — AI writes a first version");
   const s2 = agentStepEl(2, "Critique — AI finds the weaknesses");
   const s3 = agentStepEl(3, "Polish — AI rewrites using the critique");
@@ -208,26 +245,26 @@ async function runAgent() {
     const draft = await aiChat([
       { role: "system", content: "You are a helpful AI assistant. Follow the user's instructions exactly and completely." },
       { role: "user", content: filled }
-    ]);
+    ], agentStatus);
     setStepState(s1, "done", draft);
 
     setStepState(s2, "working");
     const critique = await aiChat([
       { role: "system", content: "You are a ruthless but constructive critic. Find real weaknesses: inaccuracies, vagueness, missing pieces, weak structure. Be specific." },
       { role: "user", content: "Critique this AI-generated output. List the top 3-5 specific weaknesses as bullets. No praise, no fluff:\n\n" + draft }
-    ]);
+    ], agentStatus);
     setStepState(s2, "done", critique);
 
     setStepState(s3, "working");
     const final = await aiChat([
       { role: "system", content: "You are an expert editor. Rewrite and improve. Output ONLY the improved version — no commentary, no headers about what you changed." },
       { role: "user", content: "Rewrite this draft, fixing every issue in the critique below. Output only the improved version.\n\nDRAFT:\n" + draft + "\n\nCRITIQUE:\n" + critique }
-    ]);
+    ], agentStatus);
     setStepState(s3, "done", final);
     $("agentCopyFinal").hidden = false;
     $("agentCopyFinal").onclick = e => copyText(final, e.target);
   } catch (err) {
-    $("agentError").innerHTML = aiErrorHTML(err); $("agentError").hidden = false;
+    $("agentError").innerHTML = aiErrorHTML(); $("agentError").hidden = false;
     document.querySelectorAll(".agent-step.working").forEach(el => setStepState(el, "pending"));
   }
   $("agentBtn").disabled = false;
