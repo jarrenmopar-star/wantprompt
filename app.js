@@ -67,7 +67,7 @@ function aiErrorHTML() {
 
 /* ---------- variables ---------- */
 function varsIn(text) {
-  const out = []; const re = /\[([A-Z][A-Z0-9 _-]{1,40})\]/g; let m;
+  const out = []; const re = /\[([^\[\]\n]{1,80})\]/g; let m;
   while ((m = re.exec(text))) if (!out.includes(m[1])) out.push(m[1]);
   return out;
 }
