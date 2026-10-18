@@ -120,3 +120,5 @@ footer .fine{font-size:12.5px;margin-top:6px}
 .agent-body{margin:12px 0 0;font-size:13.5px;white-space:pre-wrap;font-family:system-ui,sans-serif;color:var(--muted);max-height:220px;overflow-y:auto;border-top:1px dashed var(--border);padding-top:10px}
 .agent-step.done:last-child .agent-body{color:var(--text)}
 .btn:disabled{opacity:.55;cursor:default}
+.pane-label{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:12px 0 4px}
+.prompt-preview{white-space:pre-wrap;word-break:break-word;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;font-size:13px;max-height:140px;overflow:auto}

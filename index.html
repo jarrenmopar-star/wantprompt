@@ -23,7 +23,7 @@
   </div>
   <div class="hero">
     <h1>Find the right prompt, <em>run it instantly.</em></h1>
-    <p>A free library of hand-crafted AI prompts. Search, customize the <code>[variables]</code>, then run it right here with built-in AI — or let <strong>Agent Mode</strong> draft, critique &amp; polish for you.</p>
+    <p>A free library of hand-crafted AI prompts. Pick one, customize the <code>[variables]</code>, and run it right here with free built-in AI — no signup, no key. Or let <strong>Agent Mode</strong> draft, critique &amp; polish it for you.</p>
     <div class="search-wrap">
       <input id="search" type="search" placeholder="Search prompts… try &quot;email&quot;, &quot;logo&quot;, &quot;resume&quot;" autocomplete="off" aria-label="Search prompts">
       <span class="search-hint"><kbd>/</kbd> to search</span>
@@ -73,12 +73,15 @@
       <div class="modal-foot">
         <button class="icon-btn" id="modalFav" aria-label="Save to favorites">♡</button>
         <button class="btn primary" id="modalCopy">📋 Copy prompt</button>
+        <button class="btn" id="modalShare">🔗 Share link</button>
       </div>
       <div class="copied-tip" id="copiedTip" hidden>Copied! Paste it into ChatGPT, Claude, Gemini…</div>
     </div>
 
     <div class="tabpane" id="pane-run" hidden>
       <p class="pane-hint">Your customized prompt runs on free built-in AI. No signup, no key.</p>
+      <p class="pane-label">Prompt being sent:</p>
+      <pre class="prompt-preview" id="runPromptPreview"></pre>
       <div class="run-controls">
         <button class="btn primary" id="runBtn">▶ Run prompt</button>
         <button class="btn ghost" id="runRegen" hidden>↻ Regenerate</button>
@@ -102,6 +105,6 @@
   </div>
 </div>
 
-<script src="app.js?v=4"></script>
+<script src="app.js?v=5"></script>
 </body>
 </html>

@@ -29,7 +29,63 @@ function aiWait(ms, onStatus, label) {
   });
 }
 
-async function aiChat(messages, onStatus) {
+async function aiChatStream(messages, onToken) {
+  const res = await fetch("https://text.pollinations.ai/openai", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ model: "openai-fast", messages, private: true, stream: true })
+  });
+  if (res.status === 402 || res.status === 429 || res.status >= 500) throw new Error("busy");
+  if (!res.ok) throw new Error("hard:" + res.status);
+  if (!res.body || typeof res.body.getReader !== "function") throw new Error("nostream");
+  const reader = res.body.getReader();
+  const dec = new TextDecoder();
+  let buf = "", out = "";
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buf += dec.decode(value, { stream: true });
+    let idx;
+    while ((idx = buf.indexOf("\n\n")) >= 0) {
+      const block = buf.slice(0, idx); buf = buf.slice(idx + 2);
+      for (const line of block.split("\n")) {
+        const t = line.trim();
+        if (!t.startsWith("data:")) continue;
+        const payload = t.slice(5).trim();
+        if (!payload || payload === "[DONE]") continue;
+        try {
+          const j = JSON.parse(payload);
+          const c = j && j.choices && j.choices[0] && j.choices[0].delta && j.choices[0].delta.content;
+          if (c) { out += c; if (onToken) onToken(out); }
+        } catch (e) { /* ignore partial SSE lines */ }
+      }
+    }
+  }
+  return out.trim();
+}
+
+async function aiChatOnce(messages, onToken) {
+  try {
+    const out = await aiChatStream(messages, onToken);
+    if (out) return out;
+    // Stream ended with no content — fall through to non-streaming.
+  } catch (err) {
+    if (err.message !== "nostream") throw err;
+    // No streaming support — fall through to non-streaming.
+  }
+  const res = await fetch("https://text.pollinations.ai/openai", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ model: "openai-fast", messages, private: true })
+  });
+  if (res.status === 402 || res.status === 429 || res.status >= 500) throw new Error("busy");
+  if (!res.ok) throw new Error("hard:" + res.status);
+  const data = await res.json();
+  const c = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+  return c ? c.trim() : "";
+}
+
+async function aiChat(messages, onStatus, onToken) {
   // Stay inside the free tier's rate limit instead of hammering it.
   const gap = AI_MIN_GAP - (Date.now() - lastAiAt);
   if (gap > 0) await aiWait(gap, onStatus, "Waiting for the free AI");
@@ -37,17 +93,9 @@ async function aiChat(messages, onStatus) {
   for (let attempt = 0; ; attempt++) {
     try {
       lastAiAt = Date.now();
-      const res = await fetch("https://text.pollinations.ai/openai", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ model: "openai-fast", messages, private: true })
-      });
-      if (res.status === 402 || res.status === 429 || res.status >= 500) throw new Error("busy");
-      if (!res.ok) throw new Error("hard:" + res.status);
-      const data = await res.json();
-      const c = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
-      if (c && c.trim()) return c.trim();
-      throw new Error("busy"); // empty body — treat like a busy backend
+      const out = await aiChatOnce(messages, onToken);
+      if (out) return out;
+      throw new Error("busy");
     } catch (err) {
       lastErr = err;
       const retryable = err instanceof TypeError || err.message === "busy";
@@ -142,6 +190,10 @@ function setTab(name) {
   state.tab = name;
   document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.tab === name));
   ["prompt", "run", "agent"].forEach(n => { $("pane-" + n).hidden = n !== name; });
+  if (name === "run" && state.openId) {
+    const p = getPrompt();
+    if (p) $("runPromptPreview").textContent = fillVars(p, currentValues(p));
+  }
 }
 document.querySelectorAll(".tab").forEach(t => { t.onclick = () => setTab(t.dataset.tab); });
 
@@ -169,12 +221,13 @@ function openModal(id, tab) {
   setTab(tab || "prompt");
   $("modalBackdrop").hidden = false;
   document.body.style.overflow = "hidden";
+  try { history.replaceState(null, "", "#p=" + id); } catch (e) {}
 }
 function syncModalFav() {
   const b = $("modalFav"), on = state.favs.has(state.openId);
   b.classList.toggle("active", on); b.textContent = on ? "♥" : "♡";
 }
-function closeModal() { $("modalBackdrop").hidden = true; document.body.style.overflow = ""; state.openId = null; }
+function closeModal() { $("modalBackdrop").hidden = true; document.body.style.overflow = ""; state.openId = null; try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {} }
 
 async function copyText(text, btn) {
   try { await navigator.clipboard.writeText(text); }
@@ -202,7 +255,8 @@ async function runPrompt() {
     const out = await aiChat([
       { role: "system", content: "You are a helpful AI assistant. Follow the user's instructions exactly and completely." },
       { role: "user", content: filled }
-    ], t => { $("runStatusText").textContent = t; });
+    ], t => { $("runStatus").hidden = false; $("runStatusText").textContent = t; },
+    partial => { $("runOutput").textContent = partial; $("runOutput").hidden = false; $("runStatus").hidden = true; });
     $("runOutput").textContent = out; $("runOutput").hidden = false;
     $("runRegen").hidden = false; $("runCopyResp").hidden = false;
   } catch (err) {
@@ -237,6 +291,10 @@ async function runAgent() {
     const el = document.querySelector(".agent-step.working .agent-state");
     if (el) el.textContent = "⏳ " + t;
   };
+  const agentToken = partial => {
+    const el = document.querySelector(".agent-step.working .agent-body");
+    if (el) { el.hidden = false; el.textContent = partial; }
+  };
   const s1 = agentStepEl(1, "Draft — AI writes a first version");
   const s2 = agentStepEl(2, "Critique — AI finds the weaknesses");
   const s3 = agentStepEl(3, "Polish — AI rewrites using the critique");
@@ -245,21 +303,21 @@ async function runAgent() {
     const draft = await aiChat([
       { role: "system", content: "You are a helpful AI assistant. Follow the user's instructions exactly and completely." },
       { role: "user", content: filled }
-    ], agentStatus);
+    ], agentStatus, agentToken);
     setStepState(s1, "done", draft);
 
     setStepState(s2, "working");
     const critique = await aiChat([
       { role: "system", content: "You are a ruthless but constructive critic. Find real weaknesses: inaccuracies, vagueness, missing pieces, weak structure. Be specific." },
       { role: "user", content: "Critique this AI-generated output. List the top 3-5 specific weaknesses as bullets. No praise, no fluff:\n\n" + draft }
-    ], agentStatus);
+    ], agentStatus, agentToken);
     setStepState(s2, "done", critique);
 
     setStepState(s3, "working");
     const final = await aiChat([
       { role: "system", content: "You are an expert editor. Rewrite and improve. Output ONLY the improved version — no commentary, no headers about what you changed." },
       { role: "user", content: "Rewrite this draft, fixing every issue in the critique below. Output only the improved version.\n\nDRAFT:\n" + draft + "\n\nCRITIQUE:\n" + critique }
-    ], agentStatus);
+    ], agentStatus, agentToken);
     setStepState(s3, "done", final);
     $("agentCopyFinal").hidden = false;
     $("agentCopyFinal").onclick = e => copyText(final, e.target);
@@ -293,6 +351,9 @@ $("modalCopy").onclick = e => {
   copyText(fillVars(p, currentValues(p)), e.target);
   $("copiedTip").hidden = false;
 };
+$("modalShare").onclick = e => {
+  copyText(location.origin + location.pathname + "#p=" + state.openId, e.target);
+};
 $("runBtn").onclick = runPrompt;
 $("runRegen").onclick = runPrompt;
 $("runCopyResp").onclick = e => copyText($("runOutput").textContent, e.target);
@@ -308,5 +369,9 @@ $("randomBtn").onclick = () => {
 
 fetch("prompts.json")
   .then(r => r.json())
-  .then(data => { state.prompts = data; loadFavs(); updateFavCount(); render(); showPotd(); })
+  .then(data => {
+    state.prompts = data; loadFavs(); updateFavCount(); render(); showPotd();
+    const m = location.hash.match(/^#p=([A-Za-z0-9_-]+)$/);
+    if (m) openModal(m[1], "prompt");
+  })
   .catch(() => { grid.innerHTML = "<p style='color:var(--muted)'>Couldn't load the prompt library. Try refreshing.</p>"; });
