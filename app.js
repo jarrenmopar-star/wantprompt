@@ -367,7 +367,7 @@ $("randomBtn").onclick = () => {
   if (list.length) openModal(list[Math.floor(Math.random() * list.length)].id, "prompt");
 };
 
-fetch("prompts.json")
+fetch("prompts.json?v=2")
   .then(r => r.json())
   .then(data => {
     state.prompts = data; loadFavs(); updateFavCount(); render(); showPotd();
