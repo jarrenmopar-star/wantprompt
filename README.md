@@ -7,3 +7,5 @@ Free AI prompt library — static site, deployed via GitHub Pages.
 - `app.js` — search, filters, favorites, copy-to-clipboard, variable filling
 - `prompts.json` — 100 prompts across 8 categories
 - `CNAME` — custom domain
+
+## Guides — 8 SEO guides (small business, marketing, teachers, creators, job seekers, real estate agents, students) plus FAQ, llms.txt and RSS feed.
