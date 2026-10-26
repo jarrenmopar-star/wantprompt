@@ -1,0 +1,847 @@
+# WantPrompt — Full Prompt Library (llms-full.txt)
+
+> All 100 prompts from WantPrompt.com. Free to use, no signup, no API key. Each prompt has fill-in-the-blank [VARIABLES] — replace them with your details, then paste into ChatGPT, Claude, Gemini, or any AI chat tool, or run it on the site with the built-in free AI.
+
+## Writing (13 prompts)
+
+### Blog Post Outliner
+
+Turn a topic into a full SEO-friendly blog outline in seconds.
+
+```
+Create a detailed blog post outline about [TOPIC] for [TARGET AUDIENCE]. Include: an attention-grabbing H1 title (give 3 options), an intro hook, 5-7 H2 sections with 2-3 bullet points each, a FAQ section with 4 questions, and a call to action. Tone: [TONE]. Target length: [WORD COUNT] words.
+```
+
+### Rewrite It Better
+
+Paste rough text, get back a polished version.
+
+```
+Rewrite the following text to be clearer, more engaging, and better structured. Keep the original meaning and all key facts. Fix grammar and flow. Tone: [TONE]. Here is the text:
+
+[PASTE YOUR TEXT]
+```
+
+### Story Starter
+
+Beat writer's block with a vivid opening scene.
+
+```
+Write the opening 300 words of a [GENRE] story. Setting: [SETTING]. Main character: [CHARACTER DESCRIPTION]. Open in the middle of action, establish one intriguing mystery in the first paragraph, and end on a line that makes the reader need to continue. Do not summarize the plot — just write the scene.
+```
+
+### Email Polisher
+
+Make any email sound professional without sounding stiff.
+
+```
+Rewrite this email to sound [TONE: professional but warm]. Keep it under [LENGTH] sentences. Make the request or point unmistakably clear. Remove filler. Here is the draft:
+
+[PASTE EMAIL]
+```
+
+### Social Caption Writer
+
+Scroll-stopping captions for any platform.
+
+```
+Write 5 social media captions for [PLATFORM] about [TOPIC]. Each under [CHARACTER LIMIT] characters. Mix styles: one funny, one thought-provoking, one with a question, one with a bold claim, one storytelling. Add 3-5 relevant hashtags to each. Target audience: [AUDIENCE].
+```
+
+### Book Summarizer
+
+Get the key ideas of any book without the fluff.
+
+```
+Summarize the book [BOOK TITLE] by [AUTHOR]. Give me: the 3 core ideas in plain language, the 5 most actionable takeaways, one quote-worthy line per core idea, and who should NOT read this book. Keep it honest — include the book's main weakness.
+```
+
+### Persuasive Argument Builder
+
+Steel-man any position before you argue it.
+
+```
+Help me argue that [POSITION]. First, give me the 3 strongest arguments FOR it with supporting reasoning. Then give me the 3 strongest counterarguments and how to rebut each. End with a one-paragraph closing statement I could use. Tone: [TONE].
+```
+
+### Newsletter Writer
+
+A full newsletter issue from one topic.
+
+```
+Write a newsletter issue about [TOPIC] for [AUDIENCE]. Structure: catchy subject line (3 options), a personal 2-sentence opener, one main story (200 words), 3 curated links with one-line commentary each, and a P.S. with a question to drive replies. Voice: [VOICE].
+```
+
+### Dialogue Doctor
+
+Make fictional dialogue sound like real people.
+
+```
+Rewrite this dialogue so each character has a distinct voice and it sounds like real speech — contractions, interruptions, subtext. Keep the plot beats identical. Characters: [CHARACTER 1 DESCRIPTION], [CHARACTER 2 DESCRIPTION]. Here is the dialogue:
+
+[PASTE DIALOGUE]
+```
+
+### Cover Letter Writer
+
+A cover letter that connects your experience to what they actually need.
+
+```
+Write a compelling cover letter for the [ROLE] position at [COMPANY]. Highlight my experience in [EXPERIENCE] and connect it to what the company needs: [COMPANY NEEDS]. Tone: [TONE]. Keep it under [WORD COUNT] words and end with a confident call to action.
+```
+
+### Story Plot Twister
+
+Take a story premise and add twists that raise the stakes.
+
+```
+Take this story premise: [PREMISE]. Keep the core idea, but add 3 unexpected plot twists that change the direction of the story. For each twist, explain how it raises the stakes and how the main character [CHARACTER] would react.
+```
+
+### Speech Writer
+
+A full speech with a hook, a story, and a closing line people remember.
+
+```
+Write a [LENGTH]-minute speech for [OCCASION] delivered to [AUDIENCE]. The main message is: [MESSAGE]. Include a strong opening hook, one personal story or example about [STORY TOPIC], and a memorable closing line.
+```
+
+### Headline Tester
+
+Ten headlines in four styles, ranked with reasons.
+
+```
+Generate 10 headline options for an article about [ARTICLE TOPIC] aimed at [AUDIENCE]. Mix styles: curiosity-driven, benefit-driven, number-based, and contrarian. Rank them from strongest to weakest and say why the top 3 work.
+```
+
+## Marketing (13 prompts)
+
+### Product Description Pro
+
+Descriptions that sell the benefit, not the feature.
+
+```
+Write a product description for [PRODUCT] that sells to [TARGET CUSTOMER]. Structure: hook headline, 3 benefit-driven bullet points (benefit first, feature second), one objection-handling paragraph, and a call to action. Tone: [TONE]. Length: under [WORD COUNT] words. Product details: [DETAILS].
+```
+
+### Ad Angle Generator
+
+10 fresh angles for any ad campaign.
+
+```
+Generate 10 distinct ad angles for [PRODUCT/SERVICE] targeting [AUDIENCE]. For each angle give: the core hook (one sentence), the emotion it targets, and a sample headline. Vary the approaches — pain point, aspiration, curiosity, social proof, contrarian, humor, urgency, story, comparison, and guarantee. Product info: [DETAILS].
+```
+
+### Cold Email That Gets Replies
+
+Short, personal-feeling outreach emails.
+
+```
+Write a cold outreach email for [YOUR OFFER] to [RECIPIENT ROLE] at [COMPANY TYPE]. Rules: under 120 words, subject line under 40 characters, one specific compliment showing I researched them, one clear value proposition tied to their likely pain point, and a low-friction CTA (not a 30-minute call). Tone: confident, human, zero hype.
+```
+
+### Landing Page Copy
+
+A complete landing page draft from one brief.
+
+```
+Write landing page copy for [PRODUCT]. Include: hero headline (3 options) + subheadline, 3 benefit sections with headlines, a social proof section (write 2 realistic-sounding testimonial templates), FAQ with 4 questions, and 3 CTA button texts. Target customer: [CUSTOMER]. Main objection to overcome: [OBJECTION].
+```
+
+### Content Calendar
+
+30 days of post ideas in one shot.
+
+```
+Create a 30-day social media content calendar for [BUSINESS] on [PLATFORM]. Audience: [AUDIENCE]. For each week give a theme, then list daily post ideas (just the idea + format: reel, carousel, text, etc.). Mix: 40% educational, 30% entertaining, 20% promotional, 10% personal. Include 5 hook formulas I can reuse.
+```
+
+### Brand Voice Definer
+
+Pin down how your brand should sound.
+
+```
+Define a brand voice for [BUSINESS]. Give me: 3 adjectives that describe the voice, a 'we sound like / we never sound like' comparison table with 5 examples each, 3 sample sentences in this voice (announcing a sale, apologizing for a mistake, celebrating a customer win), and 5 words or phrases to ban. Business context: [DETAILS].
+```
+
+### Testimonial Request
+
+Get customers to actually write reviews.
+
+```
+Write a short, warm message asking [CUSTOMER TYPE] to leave a review for [PRODUCT/SERVICE]. Make it easy: include 3 specific prompt questions they can answer instead of staring at a blank box, suggest where to leave it ([REVIEW SITE]), and keep it under 100 words. Tone: grateful, not begging.
+```
+
+### Viral Hook Pack
+
+30 scroll-stopping hooks for short-form video.
+
+```
+Write 30 video hooks (first 3 seconds, spoken aloud) for content about [NICHE]. Rules: under 12 words each, no clickbait lies, mix of: bold claims, questions, mistakes to avoid, numbers, and 'I wish I knew' framings. Mark your top 5 with a star and say why each works.
+```
+
+### SEO Meta Writer
+
+Titles and descriptions that earn the click.
+
+```
+Write SEO meta titles and descriptions for a page about [TOPIC] targeting keyword [KEYWORD]. Give 5 options. Titles: under 60 characters, keyword near the front, with a curiosity or benefit hook. Descriptions: under 160 characters, include the keyword once, end with a reason to click. Page summary: [SUMMARY].
+```
+
+### Ad Copy Variations
+
+Five ads, five angles — humor, urgency, proof, pain, curiosity.
+
+```
+Write 5 ad variations for [PRODUCT] targeting [AUDIENCE] on [PLATFORM]. Each variation should use a different angle (humor, urgency, social proof, pain point, curiosity) and include a headline, 2-3 lines of body copy, and a call to action.
+```
+
+### Product Launch Teaser
+
+A 3-part teaser campaign: hint, reveal, announcement.
+
+```
+Write a 3-part teaser campaign for the launch of [PRODUCT] on [LAUNCH DATE]. Part 1: a cryptic hint. Part 2: a benefit reveal. Part 3: the full announcement with a call to action. Match the brand voice: [BRAND VOICE].
+```
+
+### Influencer Outreach Pitch
+
+A short, genuine pitch a creator would actually read.
+
+```
+Write a short, genuine outreach message to [CREATOR TYPE] asking them to promote [PRODUCT]. Mention why they specifically are a good fit, what's in it for them ([OFFER]), and keep it under 150 words. No corporate-speak.
+```
+
+### Discount Offer Copy
+
+Sale copy with urgency that doesn't feel slimy.
+
+```
+Write promo copy for a [DISCOUNT]% off sale on [PRODUCT] for [AUDIENCE]. Include: a subject line or headline, the offer, why they should act now, and the deadline ([DEADLINE]). Tone: [TONE].
+```
+
+## Business (12 prompts)
+
+### Business Idea Validator
+
+Stress-test a business idea before spending a dollar.
+
+```
+Act as a skeptical but fair business advisor. My idea: [DESCRIBE IDEA]. Give me: the 3 biggest risks, who exactly would pay for this and why, 3 competitors or substitutes, the cheapest possible way to test demand in 2 weeks, and your honest verdict (pursue / pivot / kill) with reasoning.
+```
+
+### Meeting Agenda Maker
+
+Turn a rambling meeting into a focused one.
+
+```
+Create a tight meeting agenda for: [MEETING PURPOSE]. Attendees: [WHO]. Duration: [LENGTH]. Include: objective in one sentence, 3-5 agenda items with time boxes and owners, one decision that must be made, and what 'done' looks like. Add a note on what to cut if we're running 10 minutes over.
+```
+
+### Resume Bullet Rewriter
+
+Turn job duties into achievement bullets.
+
+```
+Rewrite these resume bullets to be achievement-focused with numbers and strong verbs. Format: strong verb + what I did + measurable result. Cut buzzwords. Target role: [TARGET JOB]. Here are my current bullets:
+
+[PASTE BULLETS]
+```
+
+### Negotiation Prep
+
+Walk in knowing their moves before they make them.
+
+```
+Help me prepare to negotiate [WHAT] with [WHO]. My goal: [GOAL]. My walk-away point: [WALK-AWAY]. Give me: their 3 most likely objections and my responses, 2 concessions I can offer that cost me little, my opening ask (aim high but credible), and 3 phrases to use if they pressure me to decide on the spot.
+```
+
+### SOP Writer
+
+Turn tribal knowledge into a procedure anyone can follow.
+
+```
+Write a standard operating procedure for [PROCESS]. Assume the reader is smart but has never done this before. Include: purpose (one sentence), prerequisites, numbered steps with exactly what to click/type/say, how to verify each critical step worked, 3 common mistakes and how to avoid them, and who to ask when stuck. Keep steps atomic - one action per step.
+```
+
+### Investor One-Pager
+
+Your startup on a single compelling page.
+
+```
+Write a one-page investor summary for [STARTUP]. Sections: one-sentence pitch, the problem (make me feel it), the solution, why now, business model in one line, traction ([TRACTION]), team (2 lines), the ask ([ASK]). Tone: confident, concrete, no buzzwords. Cut anything an investor would roll their eyes at.
+```
+
+### Customer Complaint Cooler
+
+Turn an angry customer into a loyal one.
+
+```
+Write a response to this customer complaint. Rules: acknowledge the specific problem (don't be generic), take ownership without groveling, explain what happened in one sentence, state exactly what we're doing to fix it and by when, and offer [COMPENSATION]. Keep it under 150 words. Tone: human, calm, competent. The complaint:
+
+[PASTE COMPLAINT]
+```
+
+### Pricing Strategy Sanity Check
+
+Pressure-test your prices before you publish them.
+
+```
+Sanity-check my pricing for [PRODUCT/SERVICE]. Current plan: [PRICING]. Target customer: [CUSTOMER], competitors charge [COMPETITOR PRICING]. Tell me: am I leaving money on the table or pricing myself out, 3 psychological pricing tweaks to test, whether to add a decoy/anchor tier, and the one question I should ask 5 customers this week about price.
+```
+
+### Job Interview Prep
+
+Walk in with answers, not just hope.
+
+```
+Help me prep for an interview for [ROLE] at [COMPANY]. The job description emphasizes [KEY REQUIREMENTS]. Give me: 5 likely questions with strong sample answers using my background ([BACKGROUND]), 3 smart questions I should ask them, a 60-second 'tell me about yourself' script, and one story from my experience that shows [TRAIT].
+```
+
+### Performance Review Writer
+
+A fair, specific review — strengths, one growth area, a clear goal.
+
+```
+Write a balanced performance review for a [ROLE] who [STRENGTHS]. Note one growth area: [GROWTH AREA]. Keep it fair, specific, and constructive, with 2-3 concrete examples and a clear development goal.
+```
+
+### Partnership Pitch
+
+A one-page proposal that shows what's in it for both sides.
+
+```
+Write a partnership proposal to [COMPANY] from [MY COMPANY]. Explain what each side brings, the shared audience ([SHARED AUDIENCE]), and 2-3 concrete ways we could work together. Keep it to one page.
+```
+
+### SWOT Analyst
+
+A real SWOT — specific points, plus the biggest opportunity and threat.
+
+```
+Run a SWOT analysis for [BUSINESS/IDEA] in the [INDUSTRY] market. For each quadrant, list 3-4 specific, realistic points. End with the single biggest opportunity and the single biggest threat.
+```
+
+## Coding (12 prompts)
+
+### Code Explainer
+
+Understand any code, no matter how cryptic.
+
+```
+Explain this code to me like I'm a [SKILL LEVEL] developer. For each major section: what it does in plain English, why it's written this way, and one thing to watch out for. End with: what would break if I changed [THING I'M CONSIDERING CHANGING]. Here is the code:
+
+[PASTE CODE]
+```
+
+### Bug Hunter
+
+A second pair of eyes on your broken code.
+
+```
+Find the bug in this code. The expected behavior: [EXPECTED]. What's actually happening: [ACTUAL]. Give me: the most likely cause ranked by probability (top 3), the exact fix for the most likely one, and how to verify the fix. If you need more info, tell me exactly what to check. Code:
+
+[PASTE CODE]
+```
+
+### Regex Wizard
+
+Regular expressions without the headache.
+
+```
+Write a regular expression that [WHAT IT SHOULD MATCH]. Language/flavor: [e.g. JavaScript, Python]. Give me: the regex in a code block, a plain-English breakdown of each part, 3 strings it SHOULD match, 3 it should NOT match, and one edge case to be careful about.
+```
+
+### SQL Query Builder
+
+Describe what you want, get working SQL.
+
+```
+Write a SQL query for [DATABASE TYPE]. Tables: [DESCRIBE TABLES AND KEY COLUMNS]. I need: [WHAT YOU WANT, IN PLAIN ENGLISH]. Return: the query in a code block, a one-sentence explanation of the logic, and any index suggestion that would speed it up.
+```
+
+### Code Reviewer
+
+A thorough review before you merge.
+
+```
+Review this code as a senior engineer. Check: correctness, edge cases, readability, performance, and security. For each issue give severity (critical/major/minor), the problem, and the fix. Don't nitpick style unless it hurts readability. End with one genuine compliment about what's done well. Code:
+
+[PASTE CODE]
+```
+
+### API Doc Writer
+
+Documentation people will actually read.
+
+```
+Write API documentation for this endpoint. Include: one-line description, method + path, auth requirements, request parameters table (name, type, required, description), example request, example success response, and the 3 most likely error responses with causes. Keep descriptions plain and jargon-free. Endpoint details:
+
+[PASTE DETAILS OR CODE]
+```
+
+### Function Generator
+
+Boilerplate-free functions from a description.
+
+```
+Write a [LANGUAGE] function that [WHAT IT DOES]. Requirements: [INPUTS/OUTPUTS], handle these edge cases: [EDGE CASES]. Return: the function in a code block with clear naming, brief comments only where logic isn't obvious, and 3 test cases showing it works.
+```
+
+### Git Commit Message
+
+Commit messages your future self will thank you for.
+
+```
+Write a git commit message for these changes. Format: short imperative summary under 50 chars, blank line, then bullet points explaining WHAT changed and WHY (not how). If the change fixes a bug, include the symptom. Changes:
+
+[DESCRIBE OR PASTE DIFF SUMMARY]
+```
+
+### Tech Translator
+
+Explain technical things to non-technical people.
+
+```
+Explain [TECHNICAL CONCEPT] to [AUDIENCE, e.g. 'a marketing manager with no technical background']. Use one everyday analogy, avoid jargon (or define it instantly when unavoidable), cover why they should care in 2 sentences, and end with the one thing they need to remember. Keep it under 200 words.
+```
+
+### Test Case Generator
+
+Unit tests for happy path, edge cases, and invalid inputs.
+
+```
+Write unit tests for this [LANGUAGE] function: [CODE]. Cover the happy path, edge cases, and invalid inputs. Use [TEST FRAMEWORK] and include a short note on what each test verifies.
+```
+
+### Database Schema Designer
+
+Tables, keys, indexes, and the trade-offs — for any app idea.
+
+```
+Design a database schema for [APP TYPE] with these core entities: [ENTITIES]. For each table, list columns with types, primary/foreign keys, and indexes. Note any trade-offs in the design.
+```
+
+### Error Message Decoder
+
+What the error means, why it happened, and the exact fix.
+
+```
+Explain this error message in plain English: [ERROR]. Tell me what it means, the most likely cause, and the exact steps to fix it. Assume I am [LEVEL] with [LANGUAGE].
+```
+
+## Images (13 prompts)
+
+### Logo Design Brief
+
+Image prompts that actually produce usable logos.
+
+```
+Create a logo design prompt I can use in an AI image generator for [BUSINESS NAME], a [BUSINESS TYPE]. Style: [STYLE, e.g. minimalist, vintage, playful]. Include: the exact image prompt text (subject, style keywords, composition, color palette of [COLORS], plain background), what to avoid (text artifacts, clutter), and 3 style variations to try. Format the main prompt as one copy-pasteable paragraph.
+```
+
+### Photorealistic Scene Builder
+
+Photos that never happened, described perfectly.
+
+```
+Write a detailed image-generation prompt for this scene: [DESCRIBE SCENE]. Structure it as: subject + action, environment and background details, lighting (time of day, quality, direction), camera specs (lens, angle, depth of field), color grade/mood, and photorealism boosters (e.g. '85mm, f/1.8, natural skin texture'). Output one copy-pasteable paragraph, then a shorter alt version.
+```
+
+### Character Sheet Creator
+
+Consistent characters across generations.
+
+```
+Create a reusable character description for AI image generation. Character: [DESCRIPTION]. Write: a 3-sentence visual identity block (reuse verbatim every time for consistency), defining features that must never change, 3 outfit/expression variations, and a negative prompt list (things to exclude). Keep the identity block under 60 words so it pastes into any generator.
+```
+
+### Product Mockup Prompt
+
+Studio-quality product shots without a studio.
+
+```
+Write an image prompt for a product mockup of [PRODUCT]. Include: the product centered with [PACKAGING/CONTEXT], a premium studio setup (seamless [BACKGROUND COLOR] background, softbox lighting, subtle reflection), camera angle ([ANGLE]), and 2 lifestyle variations (product in use by [USER SCENE]). Output copy-pasteable prompt paragraphs plus a negative prompt.
+```
+
+### Art Style Explorer
+
+Find your aesthetic with 10 style directions.
+
+```
+Give me 10 distinct art-style prompt suffixes I can append to this base subject: [SUBJECT]. For each: the style name, a 15-word prompt fragment, the mood it creates, and what it's best for. Cover a range: photoreal, anime, oil painting, pixel art, watercolor, cyberpunk, minimalist line art, 3D render, vintage poster, and one wild card.
+```
+
+### Thumbnail That Gets Clicks
+
+YouTube thumbnails engineered for CTR.
+
+```
+Write an image-generation prompt for a YouTube thumbnail about [VIDEO TOPIC]. Requirements: bold readable composition that works at small size, max [NUMBER] words of text ([TEXT]), high-contrast colors ([COLORS]), expressive [EMOTION] face/emotion cue, curiosity gap (don't reveal the answer), and rule-of-thirds placement notes. Output the prompt paragraph + text overlay suggestion.
+```
+
+### Wallpaper Generator
+
+A perfect desktop or phone background.
+
+```
+Write an image prompt for a [DEVICE: desktop/phone] wallpaper. Theme: [THEME]. Include: composition with clear space for icons (describe where), resolution/aspect hints ([ASPECT RATIO]), color palette ([COLORS]) that won't clash with UI text, subtle detail (not distracting), and lighting mood ([MOOD]). One copy-pasteable paragraph.
+```
+
+### Before/After Transformer
+
+Show transformations in a single image.
+
+```
+Write an image prompt showing a before/after transformation of [SUBJECT] in one image, split [VERTICALLY/HORIZONTALLY]. Left side: [BEFORE STATE] in dull, flat lighting. Right side: [AFTER STATE] in vibrant, glowing light. Same angle and framing on both sides for direct comparison. Add a subtle divider. Output one copy-pasteable paragraph.
+```
+
+### Icon Set Designer
+
+Matching icons with one prompt formula.
+
+```
+Create a prompt formula for generating a matching set of app icons for: [LIST 5-8 ICONS NEEDED]. Define: the fixed style block (stroke weight, corner radius, color palette [COLORS], background shape), then the variable subject for each icon. Output the reusable style block + all [NUMBER] icon prompts ready to paste, plus a negative prompt.
+```
+
+### Book Cover Designer
+
+Three cover directions — bold, minimal, illustrated — fully briefed.
+
+```
+Create a book cover design brief for '[BOOK TITLE]', a [GENRE] book about [BOOK TOPIC]. Describe the composition, color palette, typography style, and mood. Give 3 distinct directions: bold, minimal, and illustrated.
+```
+
+### Interior Design Visualizer
+
+A room concept vivid enough for an image generator to render.
+
+```
+Describe an interior design concept for a [ROOM] in [STYLE] style. Cover layout, color palette, key furniture pieces, lighting, and one statement piece. Make it vivid enough for an image generator to render.
+```
+
+### Food Photography Prompt
+
+Bright-and-airy and dark-and-moody versions of the same dish.
+
+```
+Write a detailed food photography prompt for [DISH] in [SETTING]. Specify lighting, angle, plating, props, and background. Give 2 versions: one bright and airy, one dark and moody.
+```
+
+### Album Cover Art
+
+Imagery, palette, type, and mood for an album that doesn't exist yet.
+
+```
+Generate an album cover concept for [ARTIST/BAND], a [GENRE] act. The album is called '[ALBUM NAME]' and its theme is [THEME]. Describe the imagery, color palette, typography, and mood in enough detail for an image generator.
+```
+
+## Productivity (12 prompts)
+
+### Day Planner
+
+Turn a to-do dump into a realistic schedule.
+
+```
+Here is my to-do list for [DAY]:
+
+[PASTE TASKS]
+
+Build me a realistic schedule. I have [AVAILABLE HOURS] available, my energy peaks at [TIME], and I need [BREAKS/MEALS]. Rules: schedule hard tasks at peak energy, batch similar small tasks, add buffers between meetings, and tell me honestly what will NOT fit today and where it should go. Output as a timed schedule.
+```
+
+### Decision Matrix
+
+Stop going in circles — decide with a table.
+
+```
+Help me decide between these options: [OPTION A], [OPTION B], [OPTION C]. My criteria and their importance (1-5): [CRITERIA]. Score each option 1-10 per criterion, show the weighted table, declare a winner, then argue AGAINST the winner for one paragraph (devil's advocate) so I can check my gut. Context: [BACKGROUND].
+```
+
+### Inbox Triage Rules
+
+A personal system for email overload.
+
+```
+Design an inbox triage system for me. I get about [NUMBER] emails/day, mostly about [TYPES]. My role: [ROLE]. Give me: 4-5 folder/label names, rules for what goes where, a twice-daily triage routine (under 15 min each), email templates for the 3 replies I send most ([DESCRIBE]), and one rule for when to just archive without replying.
+```
+
+### Goal Breaker-Downer
+
+Big scary goal → weekly actions.
+
+```
+Break this goal into an actionable plan: [GOAL]. Deadline: [DATE]. I can spend [HOURS/WEEK]. Give me: 3-4 phases with milestones, weekly actions for the first month, the single highest-leverage action to start this week, likely obstacles + workarounds, and how I'll know I'm on track at the halfway point. Be realistic, not motivational-poster.
+```
+
+### Meeting Notes to Actions
+
+Paste rambling notes, get a crisp action list.
+
+```
+Turn these meeting notes into: a 3-sentence summary, decisions made (with who decided), action items as [Owner] - [Task] - [Deadline] (infer deadlines only if stated; otherwise mark TBD), open questions, and items to carry to next meeting. Cut chit-chat. Notes:
+
+[PASTE NOTES]
+```
+
+### Habit Stack Builder
+
+Attach new habits to ones you already have.
+
+```
+Help me build the habit of [NEW HABIT]. My existing routines: [MORNING/EVENING ROUTINES]. Design: a habit stack (attach the new habit to an existing trigger), the smallest possible version to start (2-minute version), how to track it ([TRACKING METHOD]), what to do when I miss a day, and a 30-day ramp-up plan. Keep it embarrassingly easy at first.
+```
+
+### Weekly Review
+
+A 20-minute review that actually improves next week.
+
+```
+Run my weekly review. Ask me about: [WINS], [WHAT DIDN'T WORK], [LESSONS]. Then give me: my top 3 wins reframed as evidence of progress, the one pattern behind what didn't work, 3 concrete adjustments for next week (not vague intentions), and my top 3 priorities for next week ranked by impact. Interview me one question at a time.
+```
+
+### Procrastination Buster
+
+Figure out WHY you're stuck, then unstick.
+
+```
+I'm procrastinating on [TASK]. Ask me diagnostic questions one at a time to find the real blocker: is it unclear, boring, scary, too big, or am I just tired? Once you identify it, give me a tailored unblock plan: the smallest first step (under 10 minutes), how to make it less aversive, and a commitment device. No generic 'just do it' advice.
+```
+
+### Travel Itinerary
+
+A day-by-day trip plan from one prompt.
+
+```
+Plan a [NUMBER]-day trip to [DESTINATION] for [TRAVELERS]. Budget: [BUDGET], pace: [RELAXED/PACKED], interests: [INTERESTS]. Day by day: morning/afternoon/evening with specific places, food suggestions near each stop, transit tips between stops, one backup plan for bad weather, and estimated daily cost. Flag anything that needs booking in advance.
+```
+
+### Email Declutter Plan
+
+From thousands of unread to inbox zero, with a system to stay there.
+
+```
+Create a step-by-step plan to get my inbox from [CURRENT COUNT] emails down to inbox zero in [TIME AVAILABLE]. Include rules for bulk-deleting, unsubscribing, and a simple system to keep it under control afterward.
+```
+
+### Morning Routine Builder
+
+A realistic routine ordered by energy, built around your non-negotiables.
+
+```
+Build a [LENGTH]-minute morning routine that helps me [GOAL]. I wake at [WAKE TIME] and my non-negotiables are [NON-NEGOTIABLES]. Order it by energy level and keep it realistic for a busy day.
+```
+
+### Priority Reset
+
+Re-rank your tasks, flag what to drop, and name today's top 3.
+
+```
+Help me re-prioritize these tasks: [TASKS]. My top goal this week is [WEEKLY GOAL] and my hard deadline is [DEADLINE]. Rank them, flag anything I should drop or delegate, and give me the first 3 things to do today.
+```
+
+## Learning (13 prompts)
+
+### Explain Like I'm Smart But New
+
+Learn anything fast, at your level.
+
+```
+Teach me [TOPIC]. Assume I'm intelligent but know nothing about it. Structure: the one-sentence big idea, a real-world analogy, the 3 most important sub-concepts (each with an example), the #1 misconception beginners have, and 3 questions to test my understanding (with answers hidden until I try). Ask me my level first if it matters.
+```
+
+### Socratic Tutor
+
+Learn by answering, not by reading.
+
+```
+Teach me [TOPIC] using the Socratic method. Rules: never lecture for more than 2 sentences, ask me one question at a time, build on my answers, correct me gently when I'm wrong and explain why, and increase difficulty as I get things right. Start with a diagnostic question to gauge my level.
+```
+
+### Study Plan Generator
+
+A real plan for exams or new skills.
+
+```
+Build me a study plan for [EXAM OR SKILL]. Test date / goal date: [DATE]. I can study [HOURS/DAY], current level: [LEVEL]. Include: topics in priority order with time allocations, active-recall methods for each topic (not just re-reading), spaced-repetition checkpoints, 2 practice-test milestones, and what to do in the final 48 hours. Materials I have: [MATERIALS].
+```
+
+### Paper Decoder
+
+Academic papers in plain English.
+
+```
+Explain this academic paper to me. Give me: the research question in one sentence, what they did (methods, briefly), what they found (results, plain English), why it matters, the biggest limitation or flaw, and how confident I should be in the conclusions (1-10 with reasoning). Skip the jargon unless you define it. Paper:
+
+[PASTE ABSTRACT OR SECTIONS]
+```
+
+### Language Conversation Partner
+
+Practice a language with corrections built in.
+
+```
+Be my [LANGUAGE] conversation partner at [LEVEL: beginner/intermediate/advanced]. Rules: keep your replies short (2-3 sentences), always reply in [LANGUAGE], after each of my messages give: corrections (if any) with brief explanations, then your next conversational reply. Topic to start: [TOPIC]. If I switch to English, answer in English briefly then nudge me back.
+```
+
+### Mental Model Library
+
+Think better with 10 mental models.
+
+```
+Teach me 10 mental models useful for [DOMAIN: e.g. business decisions, everyday life]. For each: the name, the idea in 2 sentences, a concrete example of it in action, and one situation where it does NOT apply. End with: which 3 to learn first and a one-week practice plan.
+```
+
+### History Storyteller
+
+History as a story, not a textbook.
+
+```
+Tell me the story of [HISTORICAL EVENT/PERIOD] like a great documentary narrator. Cover: the world before (set the scene), the 3 key turning points with the human drama behind each, what each side wanted and why, the outcome, and the one thing most people get wrong about it. Make me feel why it mattered. Length: about [LENGTH].
+```
+
+### Math Problem Solver
+
+Learn the method, not just the answer.
+
+```
+Help me solve this: [PROBLEM]. Don't just give the answer — walk me through it step by step, explaining WHY each step works. After solving, give me 2 similar practice problems (with answers hidden), and tell me the general technique name so I can recognize this problem type next time.
+```
+
+### Debate Partner
+
+Sharpen your thinking against a worthy opponent.
+
+```
+Debate me on [TOPIC]. You take the [POSITION] side, I'll take the other. Rules: one argument per turn, attack my reasoning not me, concede good points honestly (say so when I make one), and after 5 exchanges give a verdict on who argued better and the strongest point each side made. Start with your opening argument.
+```
+
+### History Timeline Explainer
+
+The 8-10 moments that mattered, and the one thing people get wrong.
+
+```
+Explain [EVENT/PERIOD] as a timeline of the 8-10 key moments that mattered most. For each moment, give the date, what happened, and why it changed what came next. End with the one thing most people get wrong about it.
+```
+
+### Science Concept Simplifier
+
+One analogy, zero jargon — then the real terms.
+
+```
+Explain [CONCEPT] like I'm [AGE] years old, using one everyday analogy and no jargon. Then give me a slightly deeper version with the real terms, and one example of it in action.
+```
+
+### Exam Quiz Generator
+
+A mixed quiz with an answer key that actually explains the answers.
+
+```
+Generate a [NUMBER]-question quiz on [SUBJECT] at [DIFFICULTY] level. Mix multiple choice and short answer. Put the answer key at the end with a one-line explanation per answer.
+```
+
+### Flashcard Maker
+
+Turn messy notes into clean question/answer flashcards.
+
+```
+Turn these notes into flashcards: [NOTES]. Each card should have a short question on the front and a concise answer on the back. Give me [NUMBER] cards, and flag any note that's too vague to make a good card.
+```
+
+## Fun (12 prompts)
+
+### Gift Idea Finder
+
+Actually good gift ideas, not generic lists.
+
+```
+Find gift ideas for [PERSON: e.g. 'my dad']. About them: [AGE, INTERESTS, PERSONALITY]. Budget: [BUDGET]. Occasion: [OCCASION]. Give me 10 ideas: 5 safe crowd-pleasers, 3 creative/unexpected, 2 experience gifts. For each: why it fits THEM specifically (not generic), rough price, and where to look. Avoid: [THINGS THEY HATE OR ALREADY HAVE].
+```
+
+### Date Night Planner
+
+A plan that looks effortless (it won't be).
+
+```
+Plan a date night for [PARTNER DESCRIPTION]. Constraints: budget [BUDGET], area [LOCATION], vibe [VIBE: romantic/fun/adventurous/cozy], dietary notes: [NOTES]. Give me: the plan hour-by-hour, one 'wow' detail that makes it feel thoughtful, 3 conversation starters in case of lulls, and a backup if [BACKUP SCENARIO]. Keep it realistic for a [WEEKNIGHT/WEEKEND].
+```
+
+### Roast Me (Lightly)
+
+Good-natured roasts for friends.
+
+```
+Write a light-hearted roast of my friend for [OCCASION: birthday speech, group chat, etc.]. About them: [FUNNY FACTS, QUIRKS, STORIES]. Rules: funny but kind — punch up, never punch down; avoid: [OFF-LIMITS TOPICS]. Give me 3 versions: playful (safe for grandma), spicy (friends only), and a one-liner closer. Keep each under [LENGTH].
+```
+
+### Trivia Night Host
+
+Run a full trivia game in one prompt.
+
+```
+Host a trivia night on [THEME] for [NUMBER] players at [DIFFICULTY] level. Give me: 5 rounds of 5 questions (mix of easy/medium/hard), answers hidden in a separate section, one bonus wager round, tiebreaker question, and fun host banter lines between rounds. Format it so I can read questions aloud straight from the screen.
+```
+
+### Workout Generator
+
+A workout for your gear, time, and mood.
+
+```
+Build me a workout. I have [EQUIPMENT], [TIME] minutes, fitness level [LEVEL], goal: [GOAL]. Injuries/limits: [LIMITS]. Give me: warm-up (5 min), the main workout with exercises, sets, reps, and rest times, a finisher, and cool-down stretches. Format as a checklist I can follow at the gym. Include one swap option per exercise.
+```
+
+### Recipe From My Fridge
+
+Dinner from whatever's actually in there.
+
+```
+I have these ingredients: [LIST WHAT YOU HAVE]. Also assume I have basic pantry staples (oil, salt, spices). Dietary needs: [NEEDS]. Cooking time max: [TIME]. Give me 3 recipe options ranked by how good they'll taste, then full instructions for the winner: ingredients with amounts, steps, and one pro tip. Be honest if an ingredient combo won't work.
+```
+
+### Texting Wingman
+
+Replies that don't sound like a robot wrote them.
+
+```
+Help me reply to this text. Context: [WHO THEY ARE, SITUATION]. Their message: [PASTE]. I want to come across as [VIBE: funny, flirty, chill, professional]. Give me 3 reply options: safe, bold, and playful. Each under 30 words. Tell me which you'd send and why. Match my texting style: [EXAMPLE OF HOW YOU TEXT].
+```
+
+### Dream Interpreter
+
+What was your brain doing last night?
+
+```
+I had this dream: [DESCRIBE DREAM]. Give me: the 3 most likely psychological interpretations (no mysticism), what each symbol commonly represents, how it might connect to my current life ([CONTEXT]), and 2 reflective questions to think about. Fun, thoughtful, not fortune-teller.
+```
+
+### Party Game Inventor
+
+A custom game for your exact group.
+
+```
+Invent a party game for [NUMBER] people, ages [RANGE], at [SETTING: house party, dinner, etc.]. Vibe: [VIBE]. We have [PROPS AVAILABLE]. Give me: the game name, rules in 5 bullet points, how a round works (with example), how someone wins, and 2 variations if we want a second round. Make it funny without being mean.
+```
+
+### Bucket List Builder
+
+15 items across adventure, learning, food, travel, and giving back.
+
+```
+Build a bucket list for [PERSON TYPE] who loves [INTERESTS]. Include 15 items across adventure, learning, food, travel, and giving back. Make at least 3 of them free or nearly free.
+```
+
+### Compliment Generator
+
+A genuine, specific compliment — no generic filler, nothing cringey.
+
+```
+Write a genuine, specific compliment for [PERSON] that mentions [THING YOU ADMIRE]. Warm and sincere — no generic 'you're amazing' filler, and nothing cringey.
+```
+
+### Would You Rather Game
+
+Ten impossible questions — funny, gross, absurd, unanswerable fast.
+
+```
+Generate 10 'Would You Rather' questions for [AUDIENCE]. Make them funny, a little gross or absurd, and impossible to answer quickly. No repeats of the classic 'fly vs invisible' type.
+```

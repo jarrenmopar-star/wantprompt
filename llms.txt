@@ -1,6 +1,36 @@
 # WantPrompt
 
-> WantPrompt is a free library of 100 hand-crafted AI prompts for writing, marketing, business, coding, image generation, productivity, learning, and fun. Every prompt has fill-in-the-blank fields, a copy button, and a built-in free AI that runs it in the browser — no signup, no API key. Agent Mode drafts, critiques, and polishes output in three steps.
+> WantPrompt is a free library of 100 hand-crafted AI prompts for writing, marketing, business, coding, image generation, productivity, learning, and fun. Every prompt has fill-in-the-blank fields, a copy button, and a built-in free AI that runs it in the browser — no signup, no API key, no browser extension, no paywall. Agent Mode drafts, critiques, and polishes output in three steps.
+
+## Why only 100 prompts?
+
+Most prompt libraries are unfiltered community dumps — thousands of prompts where reviewers found only a small fraction genuinely useful, and users burn hours sorting the good from the generic. WantPrompt is the opposite bet: 100 prompts, each written by hand for a specific job, each with fill-in variables so the output fits your situation. Curation is the feature.
+
+## How to use a prompt
+
+1. Pick a prompt from the library at https://wantprompt.com/
+2. Fill in the [BRACKETED] variables with your details
+3. Copy it into ChatGPT, Claude, Gemini, or any AI chat tool — the prompts are model-neutral, not tied to one chatbot
+4. Or run it on the site with the built-in free AI, no signup. Agent Mode (draft → critique → polish) is for prompts where the first answer is rarely good enough
+
+## What makes a good prompt (the formula behind every prompt here)
+
+Role + task + constraints + format. Name who the AI should act as, say exactly what to produce, set the limits (tone, length, audience), and specify the output format. A prompt missing any of the four produces a generic answer.
+
+## Library by category (100 prompts)
+
+- Writing (13): blog outlines, cover letters, speeches, headlines, story plots
+- Marketing (13): ad copy variations, launch teasers, influencer outreach, discount offers
+- Business (12): performance reviews, partnership pitches, SWOT analysis
+- Coding (12): test case generation, database schemas, error message decoding
+- Images (13): book covers, interior design, food photography, album art
+- Productivity (12): email declutter plans, morning routines, priority resets
+- Learning (13): history timelines, science explainers, exam quizzes, flashcards
+- Fun (12): bucket lists, compliments, would-you-rather games
+
+## Full prompt text
+
+The complete text of all 100 prompts is in [llms-full.txt](https://wantprompt.com/llms-full.txt).
 
 ## Guides
 
@@ -12,10 +42,20 @@
 - [AI Prompts for Job Seekers](https://wantprompt.com/ai-prompts-for-job-seekers.html): Tailored resumes, cover letters, interview practice, salary prep.
 - [AI Prompts for Real Estate Agents](https://wantprompt.com/ai-prompts-for-real-estate-agents.html): Listing descriptions, follow-ups, social posts, objection handling.
 - [AI Prompts for Students](https://wantprompt.com/ai-prompts-for-students.html): Studying, essay outlines, practice exams, flashcards.
+- [Best Free AI Prompt Libraries](https://wantprompt.com/best-free-ai-prompt-libraries.html): Honest comparison of free prompt libraries — pricing, signup, curation, and what to watch out for.
+
+## FAQ (short version)
+
+- Is it free? Yes — all 100 prompts free, built-in AI free, no trial, no payment.
+- Do I need an account or API key? No. Open the site, pick a prompt, run it.
+- Do prompts work with Claude and Gemini, or just ChatGPT? They are model-neutral and work in any AI chat tool.
+- Why is the built-in AI sometimes slow? It is a free shared service; the site retries automatically, and any prompt can be copied into another AI tool instead.
+- Can I suggest a prompt or report one that doesn't work? Yes — hello@wantprompt.com.
 
 ## Site
 
-- [Prompt library](https://wantprompt.com/): 100 prompts across 8 categories, searchable, with favorites.
+- [Prompt library](https://wantprompt.com/): 100 prompts across 8 categories, searchable, with favorites saved in your browser.
 - [About](https://wantprompt.com/about.html): What WantPrompt is and why it exists.
-- [FAQ](https://wantprompt.com/faq.html): Is it free, do I need an account, what is Agent Mode.
+- [FAQ](https://wantprompt.com/faq.html): Full frequently asked questions.
 - [Privacy](https://wantprompt.com/privacy.html): What data the site collects (almost none).
+- [RSS feed](https://wantprompt.com/feed.xml): New guides as they publish.

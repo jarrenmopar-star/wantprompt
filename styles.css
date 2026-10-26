@@ -122,3 +122,5 @@ footer .fine{font-size:12.5px;margin-top:6px}
 .btn:disabled{opacity:.55;cursor:default}
 .pane-label{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:12px 0 4px}
 .prompt-preview{white-space:pre-wrap;word-break:break-word;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;font-size:13px;max-height:140px;overflow:auto}
+
+.trust-strip{margin:14px 0 4px;font-size:14px;color:var(--muted)}
