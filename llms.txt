@@ -1,0 +1,21 @@
+# WantPrompt
+
+> WantPrompt is a free library of 100 hand-crafted AI prompts for writing, marketing, business, coding, image generation, productivity, learning, and fun. Every prompt has fill-in-the-blank fields, a copy button, and a built-in free AI that runs it in the browser — no signup, no API key. Agent Mode drafts, critiques, and polishes output in three steps.
+
+## Guides
+
+- [How to Write Better ChatGPT Prompts](https://wantprompt.com/how-to-write-better-chatgpt-prompts.html): The prompt formula that gets better answers: role, task, constraints, and format.
+- [Best AI Prompts for Small Business](https://wantprompt.com/best-ai-prompts-for-small-business.html): Marketing, customer service, and operations prompts for small teams.
+- [AI Prompts for Marketing](https://wantprompt.com/ai-prompts-for-marketing.html): Ad copy, email campaigns, social posts, and SEO content.
+- [Best ChatGPT Prompts for Teachers](https://wantprompt.com/best-chatgpt-prompts-for-teachers.html): Lesson plans, differentiated worksheets, grading feedback, parent emails, quizzes.
+- [AI Prompts for Content Creators](https://wantprompt.com/ai-prompts-for-content-creators.html): Ideas, scripts, titles, captions, and repurposing.
+- [AI Prompts for Job Seekers](https://wantprompt.com/ai-prompts-for-job-seekers.html): Tailored resumes, cover letters, interview practice, salary prep.
+- [AI Prompts for Real Estate Agents](https://wantprompt.com/ai-prompts-for-real-estate-agents.html): Listing descriptions, follow-ups, social posts, objection handling.
+- [AI Prompts for Students](https://wantprompt.com/ai-prompts-for-students.html): Studying, essay outlines, practice exams, flashcards.
+
+## Site
+
+- [Prompt library](https://wantprompt.com/): 100 prompts across 8 categories, searchable, with favorites.
+- [About](https://wantprompt.com/about.html): What WantPrompt is and why it exists.
+- [FAQ](https://wantprompt.com/faq.html): Is it free, do I need an account, what is Agent Mode.
+- [Privacy](https://wantprompt.com/privacy.html): What data the site collects (almost none).
