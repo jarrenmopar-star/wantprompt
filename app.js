@@ -1,13 +1,57 @@
 /* WantPrompt — prompt library + built-in free AI + agent mode */
-const state = { prompts: [], cat: "All", q: "", favsOnly: false, favs: new Set(), openId: null, tab: "prompt" };
+const state = { prompts: [], mine: [], cat: "All", q: "", favsOnly: false, favs: new Set(), openId: null, tab: "prompt", sort: "default", votes: {}, voted: new Set() };
 const $ = id => document.getElementById(id);
 const grid = $("grid"), catsEl = $("cats");
+
+/* ---------- backend API (Cloudflare Worker; blank = offline mode) ---------- */
+const API_BASE = ""; // filled with the deployed Worker URL, e.g. https://wantprompt-api.<account>.workers.dev
+async function apiGet(path) {
+  if (!API_BASE) return null;
+  try { const r = await fetch(API_BASE + path); return r.ok ? await r.json() : null; } catch (e) { return null; }
+}
+async function apiPost(path, body) {
+  if (!API_BASE) return null;
+  try { const r = await fetch(API_BASE + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }); return r.ok ? await r.json() : null; } catch (e) { return null; }
+}
+function allPrompts() { return [...state.prompts, ...state.mine]; }
+async function fetchVotes() {
+  const data = await apiGet("/api/votes");
+  if (data && data.votes) { state.votes = data.votes; render(); }
+}
+async function vote(id, btn) {
+  if (state.voted.has(id)) return;
+  const res = await apiPost("/api/vote", { id });
+  if (res && typeof res.count === "number") {
+    state.votes[id] = res.count; state.voted.add(id);
+    try { localStorage.setItem("wp_voted", JSON.stringify([...state.voted])); } catch (e) {}
+    render();
+  } else if (btn) { btn.textContent = "▲ " + (state.votes[id] || 0) + " (offline)"; }
+}
 
 /* ---------- favorites ---------- */
 function loadFavs() { try { state.favs = new Set(JSON.parse(localStorage.getItem("wp_favs") || "[]")); } catch (e) {} }
 function saveFavs() { localStorage.setItem("wp_favs", JSON.stringify([...state.favs])); }
 function updateFavCount() { $("favCount").textContent = state.favs.size; }
 function esc(s) { return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+/* ---------- my prompts (saved in this browser) ---------- */
+function loadMine() { try { state.mine = JSON.parse(localStorage.getItem("wp_mine") || "[]"); } catch (e) { state.mine = []; } }
+function saveMine() { localStorage.setItem("wp_mine", JSON.stringify(state.mine)); }
+function deleteMine(id) { state.mine = state.mine.filter(p => p.id !== id); saveMine(); render(); }
+
+/* ---------- display prefs: theme, layout, text size ---------- */
+function applyPrefs() {
+  const theme = localStorage.getItem("wp_theme") || "dark";
+  const layout = localStorage.getItem("wp_layout") || "grid";
+  const text = localStorage.getItem("wp_text") || "m";
+  document.body.classList.toggle("light", theme === "light");
+  document.body.classList.toggle("list", layout === "list");
+  document.body.classList.toggle("text-s", text === "s");
+  document.body.classList.toggle("text-l", text === "l");
+  $("themeBtn").textContent = theme === "light" ? "🌙 Dark" : "☀️ Light";
+  $("layoutBtn").textContent = layout === "list" ? "▦ Grid" : "☰ List";
+  $("textBtn").textContent = text === "s" ? "A·" : text === "l" ? "A·A·A" : "A·A";
+}
 
 /* ---------- free AI backend ---------- */
 // Pollinations' anonymous tier allows roughly 1 request per 15s per IP.
@@ -133,28 +177,34 @@ function fillVars(p, values) {
   });
   return t;
 }
-function getPrompt() { return state.prompts.find(x => x.id === state.openId); }
+function getPrompt() { return allPrompts().find(x => x.id === state.openId); }
 
 /* ---------- categories / grid ---------- */
 function renderCats() {
-  const cats = ["All", ...new Set(state.prompts.map(p => p.category))];
+  const cats = ["All", ...new Set(allPrompts().map(p => p.category))];
+  if (state.mine.length) cats.push("My prompts");
   catsEl.innerHTML = "";
   cats.forEach(c => {
     const b = document.createElement("button");
+    const n = c === "My prompts" ? state.mine.length : c === "All" ? 0 : allPrompts().filter(p => p.category === c).length;
     b.className = "cat" + (state.cat === c ? " active" : "");
-    b.textContent = c + (c === "All" ? "" : " · " + state.prompts.filter(p => p.category === c).length);
+    b.textContent = c + (c === "All" ? "" : " · " + n);
     b.onclick = () => { state.cat = c; state.favsOnly = false; state.q = ""; $("search").value = ""; render(); window.scrollTo(0, 0); };
     catsEl.appendChild(b);
   });
 }
 function filtered() {
   const q = state.q.trim().toLowerCase();
-  return state.prompts.filter(p => {
+  let list = allPrompts().filter(p => {
     if (state.favsOnly && !state.favs.has(p.id)) return false;
-    if (state.cat !== "All" && p.category !== state.cat) return false;
+    if (state.cat === "My prompts" && !p.mine) return false;
+    if (state.cat !== "All" && state.cat !== "My prompts" && p.category !== state.cat) return false;
     if (q && !(p.title + " " + p.desc + " " + p.prompt).toLowerCase().includes(q)) return false;
     return true;
   });
+  if (state.sort === "az") list = [...list].sort((a, b) => a.title.localeCompare(b.title));
+  if (state.sort === "votes") list = [...list].sort((a, b) => (state.votes[b.id] || 0) - (state.votes[a.id] || 0));
+  return list;
 }
 function render() {
   renderCats();
@@ -166,13 +216,19 @@ function render() {
   list.forEach(p => {
     const card = document.createElement("div");
     card.className = "card";
+    const v = state.votes[p.id] || 0;
     card.innerHTML =
-      '<div class="card-top"><span class="badge">' + esc(p.category) + '</span>' +
+      '<div class="card-top"><span class="badge">' + esc(p.mine ? "My prompt · " + p.category : p.category) + '</span><span>' +
+      (p.mine ? '<button class="del-mine" aria-label="Delete my prompt">✕</button>' : "") +
       '<button class="fav' + (state.favs.has(p.id) ? " active" : "") + '" aria-label="Save">' +
-      (state.favs.has(p.id) ? "♥" : "♡") + "</button></div>" +
+      (state.favs.has(p.id) ? "♥" : "♡") + "</button></span></div>" +
       "<h3>" + esc(p.title) + "</h3><p>" + esc(p.desc) + "</p>" +
-      '<div class="card-foot"><button class="mini-try">▶ Try</button><button class="mini-copy">📋 Copy</button></div>';
+      '<div class="card-foot"><button class="vote-btn' + (state.voted.has(p.id) ? " voted" : "") + '">▲ ' + v + '</button>' +
+      '<span class="card-foot-right"><button class="mini-try">▶ Try</button><button class="mini-copy">📋 Copy</button></span></div>';
     card.querySelector(".fav").onclick = e => { e.stopPropagation(); toggleFav(p.id); };
+    card.querySelector(".vote-btn").onclick = e => { e.stopPropagation(); vote(p.id, e.target); };
+    const del = card.querySelector(".del-mine");
+    if (del) del.onclick = e => { e.stopPropagation(); deleteMine(p.id); };
     card.querySelector(".mini-copy").onclick = e => { e.stopPropagation(); copyText(fillVars(p, {}), e.target); };
     card.querySelector(".mini-try").onclick = e => { e.stopPropagation(); openModal(p.id, "run"); };
     card.onclick = () => openModal(p.id, "prompt");
@@ -198,7 +254,7 @@ function setTab(name) {
 document.querySelectorAll(".tab").forEach(t => { t.onclick = () => setTab(t.dataset.tab); });
 
 function openModal(id, tab) {
-  const p = state.prompts.find(x => x.id === id);
+  const p = allPrompts().find(x => x.id === id);
   if (!p) return;
   state.openId = id;
   $("modalCat").textContent = p.category;
@@ -338,6 +394,78 @@ function showPotd() {
   $("potd").hidden = false;
 }
 
+/* ---------- toolbar: theme / layout / text / sort / panels ---------- */
+function togglePanel(id) {
+  ["minePanel", "submitPanel", "contactPanel"].forEach(p => { if (p !== id) $(p).hidden = true; });
+  $(id).hidden = !$(id).hidden;
+  if (!$(id).hidden) $(id).scrollIntoView({ behavior: "smooth", block: "center" });
+}
+$("themeBtn").onclick = () => {
+  localStorage.setItem("wp_theme", document.body.classList.contains("light") ? "dark" : "light");
+  applyPrefs();
+};
+$("layoutBtn").onclick = () => {
+  localStorage.setItem("wp_layout", document.body.classList.contains("list") ? "grid" : "list");
+  applyPrefs();
+};
+$("textBtn").onclick = () => {
+  const cur = localStorage.getItem("wp_text") || "m";
+  localStorage.setItem("wp_text", cur === "m" ? "l" : cur === "l" ? "s" : "m");
+  applyPrefs();
+};
+$("sortSel").onchange = e => { state.sort = e.target.value; render(); };
+$("mineBtn").onclick = () => togglePanel("minePanel");
+$("submitBtn").onclick = () => togglePanel("submitPanel");
+$("contactBtn").onclick = () => togglePanel("contactPanel");
+$("footerSubmit").onclick = e => { e.preventDefault(); togglePanel("submitPanel"); window.scrollTo(0, 0); };
+$("footerContact").onclick = e => { e.preventDefault(); togglePanel("contactPanel"); window.scrollTo(0, 0); };
+$("mineSave").onclick = () => {
+  const title = $("mineTitle").value.trim(), prompt = $("minePrompt").value.trim();
+  const st = $("mineStatus");
+  if (!title || !prompt) { st.textContent = "Title and prompt text are required."; st.className = "panel-status err"; return; }
+  state.mine.push({ id: "mine-" + Date.now(), title, category: $("mineCat").value, desc: $("mineDesc").value.trim() || "Your custom prompt.", prompt, mine: true });
+  saveMine();
+  ["mineTitle", "mineDesc", "minePrompt"].forEach(i => $(i).value = "");
+  st.textContent = "Saved — it now appears in the library."; st.className = "panel-status ok";
+  render();
+};
+async function postForm(url, body, statusEl, okMsg) {
+  const st = $(statusEl);
+  if (!API_BASE) { st.innerHTML = 'Backend not connected yet — email instead: <a href="mailto:hello@wantprompt.com">hello@wantprompt.com</a>'; st.className = "panel-status err"; return; }
+  st.textContent = "Sending…"; st.className = "panel-status";
+  const res = await apiPost(url, body);
+  if (res && res.ok) { st.textContent = okMsg; st.className = "panel-status ok"; }
+  else { st.textContent = "Couldn't send right now — try again later."; st.className = "panel-status err"; }
+}
+$("subSend").onclick = () => postForm("/api/submit",
+  { title: $("subTitle").value.trim(), category: $("subCat").value, prompt: $("subPrompt").value.trim(), name: $("subName").value.trim() },
+  "subStatus", "Thanks! Your submission is in the review queue.");
+$("ctSend").onclick = () => postForm("/api/contact",
+  { name: $("ctName").value.trim(), email: $("ctEmail").value.trim(), message: $("ctMsg").value.trim() },
+  "ctStatus", "Message sent. Thanks!");
+$("exportBtn").onclick = () => {
+  const blob = new Blob([JSON.stringify({ favs: [...state.favs], mine: state.mine }, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = "wantprompt-backup.json"; a.click();
+  URL.revokeObjectURL(a.href);
+};
+$("importFile").onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const data = JSON.parse(r.result);
+      if (Array.isArray(data.favs)) data.favs.forEach(id => state.favs.add(id));
+      if (Array.isArray(data.mine)) {
+        const have = new Set(state.mine.map(p => p.id));
+        data.mine.forEach(p => { if (p && p.id && p.title && p.prompt && !have.has(p.id)) state.mine.push(p); });
+      }
+      saveFavs(); saveMine(); updateFavCount(); render();
+    } catch (err) { /* ignore bad file */ }
+  };
+  r.readAsText(f);
+};
+
 /* ---------- wiring ---------- */
 $("modalClose").onclick = closeModal;
 $("modalBackdrop").onclick = e => { if (e.target === $("modalBackdrop")) closeModal(); };
@@ -370,8 +498,17 @@ $("randomBtn").onclick = () => {
 fetch("prompts.json?v=2")
   .then(r => r.json())
   .then(data => {
-    state.prompts = data; loadFavs(); updateFavCount(); render(); showPotd();
+    state.prompts = data; loadFavs(); loadMine();
+    try { state.voted = new Set(JSON.parse(localStorage.getItem("wp_voted") || "[]")); } catch (e) {}
+    applyPrefs(); updateFavCount(); render(); showPotd(); fetchVotes();
     const m = location.hash.match(/^#p=([A-Za-z0-9_-]+)$/);
     if (m) openModal(m[1], "prompt");
   })
   .catch(() => { grid.innerHTML = "<p style='color:var(--muted)'>Couldn't load the prompt library. Try refreshing.</p>"; });
+
+/* ---------- PWA: installable + offline shell ---------- */
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  });
+}

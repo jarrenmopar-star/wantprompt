@@ -124,3 +124,35 @@ footer .fine{font-size:12.5px;margin-top:6px}
 .prompt-preview{white-space:pre-wrap;word-break:break-word;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;font-size:13px;max-height:140px;overflow:auto}
 
 .trust-strip{margin:14px 0 4px;font-size:14px;color:var(--muted)}
+
+/* ---- customize: light theme, list layout, text sizes ---- */
+body.light{--bg:#f5f7fa;--surface:#ffffff;--surface2:#eef1f5;--border:#dde3ea;--text:#16191f;--muted:#5c6675;--accent:#1f9d5c;--accent-dim:#2f8f5b;--amber:#9a6a00}
+body.light .site-header{background:linear-gradient(180deg,#ffffff,#f5f7fa)}
+body.list .grid{grid-template-columns:1fr}
+body.list .card p{flex:0}
+body.text-s .card h3{font-size:15px}body.text-s .card p{font-size:12.5px}body.text-s .prompt-text{font-size:13px}
+body.text-l .card h3{font-size:18px}body.text-l .card p{font-size:15px}body.text-l .prompt-text{font-size:15.5px}
+
+/* ---- toolbar + panels ---- */
+.toolbar{max-width:1100px;margin:14px auto 0;padding:0 20px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.tool-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer}
+.tool-btn:hover{border-color:var(--accent)}
+.tool-select{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:999px;padding:7px 10px;font-size:13px;font-weight:600;cursor:pointer}
+.panel{max-width:720px;margin:16px auto 0;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:left}
+.panel[hidden]{display:none}
+.panel h3{margin:0 0 4px;font-size:17px}
+.panel-form{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.panel-form input,.panel-form select,.panel-form textarea{background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:10px 12px;font-size:14px;font-family:inherit}
+.panel-form input:focus,.panel-form select:focus,.panel-form textarea:focus{border-color:var(--accent);outline:none}
+.panel-status{font-size:13.5px;color:var(--muted)}
+.panel-status.ok{color:var(--accent)}
+.panel-status.err{color:#ff6b81}
+
+/* ---- votes + my-prompt delete ---- */
+.card-foot{display:flex;justify-content:space-between;align-items:center}
+.card-foot-right{display:flex;gap:8px}
+.vote-btn{background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:7px 11px;font-size:13px;font-weight:700;cursor:pointer}
+.vote-btn:hover{border-color:var(--accent);color:var(--accent)}
+.vote-btn.voted{color:var(--accent);border-color:var(--accent-dim)}
+.del-mine{background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:2px 6px}
+.del-mine:hover{color:#ff6b81}

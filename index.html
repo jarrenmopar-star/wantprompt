@@ -11,6 +11,8 @@
 <meta property="og:url" content="https://wantprompt.com/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"WantPrompt","url":"https://wantprompt.com/","description":"A free library of 100 hand-crafted AI prompts. Search, customize, run with free built-in AI, or use Agent Mode. No signup.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0e1116">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
 </head>
 <body>
@@ -26,6 +28,55 @@
     <h1>Find the right prompt, <em>run it instantly.</em></h1>
     <p>A free library of hand-crafted AI prompts. Pick one, customize the <code>[variables]</code>, and run it right here with free built-in AI — no signup, no key. Or let <strong>Agent Mode</strong> draft, critique &amp; polish it for you.</p>
     <p class="trust-strip">No signup · No paywall · No extension · 100 hand-picked prompts — not 10,000 unfiltered ones</p>
+    <div class="toolbar">
+      <button class="tool-btn" id="themeBtn" title="Toggle light / dark mode">☀️ Light</button>
+      <button class="tool-btn" id="layoutBtn" title="Toggle grid / list layout">☰ List</button>
+      <button class="tool-btn" id="textBtn" title="Text size">A·A</button>
+      <select class="tool-select" id="sortSel" title="Sort prompts">
+        <option value="default">Sort: Featured</option>
+        <option value="az">Sort: A–Z</option>
+        <option value="votes">Sort: Most upvoted</option>
+      </select>
+      <button class="tool-btn" id="mineBtn">＋ My prompts</button>
+      <button class="tool-btn" id="submitBtn">✉ Submit a prompt</button>
+      <button class="tool-btn" id="contactBtn">💬 Contact</button>
+      <button class="tool-btn" id="exportBtn">⬇ Export</button>
+      <label class="tool-btn" for="importFile">⬆ Import</label><input type="file" id="importFile" accept=".json" hidden>
+    </div>
+    <div class="panel" id="minePanel" hidden>
+      <h3>Add your own prompt</h3>
+      <p class="pane-hint">Saved in this browser only — no account needed. It shows up in the library below with your other prompts.</p>
+      <div class="panel-form">
+        <input id="mineTitle" placeholder="Title — e.g. Meeting Notes Summarizer">
+        <select id="mineCat"><option>Writing</option><option>Marketing</option><option>Business</option><option>Coding</option><option>Images</option><option>Productivity</option><option>Learning</option><option>Fun</option></select>
+        <input id="mineDesc" placeholder="Short description — what does it do?">
+        <textarea id="minePrompt" rows="4" placeholder="The prompt itself. Use [BRACKETS] for fill-in parts, e.g. Summarize [TOPIC] for [AUDIENCE]."></textarea>
+        <button class="btn primary" id="mineSave">Save my prompt</button>
+        <span class="panel-status" id="mineStatus"></span>
+      </div>
+    </div>
+    <div class="panel" id="submitPanel" hidden>
+      <h3>Submit a prompt to the library</h3>
+      <p class="pane-hint">Good submissions get added to the public library. No account, no email required.</p>
+      <div class="panel-form">
+        <input id="subTitle" placeholder="Title">
+        <select id="subCat"><option>Writing</option><option>Marketing</option><option>Business</option><option>Coding</option><option>Images</option><option>Productivity</option><option>Learning</option><option>Fun</option></select>
+        <textarea id="subPrompt" rows="4" placeholder="The prompt itself"></textarea>
+        <input id="subName" placeholder="Your name (optional)">
+        <button class="btn primary" id="subSend">Send submission</button>
+        <span class="panel-status" id="subStatus"></span>
+      </div>
+    </div>
+    <div class="panel" id="contactPanel" hidden>
+      <h3>Contact</h3>
+      <div class="panel-form">
+        <input id="ctName" placeholder="Your name (optional)">
+        <input id="ctEmail" placeholder="Your email (optional, only if you want a reply)">
+        <textarea id="ctMsg" rows="4" placeholder="Message — a broken prompt, a suggestion, anything"></textarea>
+        <button class="btn primary" id="ctSend">Send message</button>
+        <span class="panel-status" id="ctStatus"></span>
+      </div>
+    </div>
     <div class="search-wrap">
       <input id="search" type="search" placeholder="Search prompts… try &quot;email&quot;, &quot;logo&quot;, &quot;resume&quot;" autocomplete="off" aria-label="Search prompts">
       <span class="search-hint"><kbd>/</kbd> to search</span>
@@ -50,7 +101,7 @@
 <footer>
   <p>WantPrompt.com — free forever. Made for people who talk to AI.</p>
   <p class="fine">Guides: <a href="how-to-write-better-chatgpt-prompts.html">How to Write Better ChatGPT Prompts</a> · <a href="best-ai-prompts-for-small-business.html">AI Prompts for Small Business</a> · <a href="ai-prompts-for-marketing.html">AI Prompts for Marketing</a> · <a href="ai-prompts-for-job-seekers.html">AI Prompts for Job Seekers</a> · <a href="ai-prompts-for-real-estate-agents.html">AI Prompts for Real Estate Agents</a> · <a href="ai-prompts-for-students.html">AI Prompts for Students</a> · <a href="best-free-ai-prompt-libraries.html">Best Free AI Prompt Libraries</a> · <a href="about.html">About</a> · <a href="faq.html">FAQ</a> · <a href="privacy.html">Privacy</a></p>
-  <p class="fine">AI runs on a free shared service — it can be slow at peak times. Have a prompt worth adding? <a href="mailto:hello@wantprompt.com?subject=Prompt%20submission">Send it in</a> · Found a prompt that doesn't work? <a href="mailto:hello@wantprompt.com?subject=Broken%20prompt">Tell us</a> · <a href="mailto:hello@wantprompt.com?subject=Interested%20in%20wantprompt.com">Interested in acquiring this site?</a></p>
+  <p class="fine">AI runs on a free shared service — it can be slow at peak times. Have a prompt worth adding? <a href="#" id="footerSubmit">Send it in</a> · Found a prompt that doesn't work? <a href="#" id="footerContact">Tell us</a> · <a href="mailto:hello@wantprompt.com?subject=Interested%20in%20wantprompt.com">Interested in acquiring this site?</a></p>
 </footer>
 
 <div class="modal-backdrop" id="modalBackdrop" hidden>
@@ -108,6 +159,6 @@
   </div>
 </div>
 
-<script src="app.js?v=6"></script>
+<script src="app.js?v=7"></script>
 </body>
 </html>
