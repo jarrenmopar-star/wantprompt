@@ -1,15 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://wantprompt.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://wantprompt.com/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://wantprompt.com/how-to-write-better-chatgpt-prompts.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://wantprompt.com/best-ai-prompts-for-small-business.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://wantprompt.com/ai-prompts-for-marketing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://wantprompt.com/best-chatgpt-prompts-for-teachers.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://wantprompt.com/ai-prompts-for-content-creators.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://wantprompt.com/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://wantprompt.com/ai-prompts-for-job-seekers.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://wantprompt.com/ai-prompts-for-real-estate-agents.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://wantprompt.com/ai-prompts-for-students.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://wantprompt.com/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wantprompt.com/faq.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/about.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/privacy.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://wantprompt.com/best-free-ai-prompt-libraries.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt-builder.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/packs/small-business-starter.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/packs/content-creator-starter.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/packs/job-seeker-starter.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/w1.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/w2.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/w3.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/w4.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/w5.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/w6.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/w7.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/w8.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/w9.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/m1.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/m2.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/m3.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/m4.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/m5.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/m6.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/m7.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/m8.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/m9.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/b1.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/b2.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/b3.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/b4.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/b5.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/b6.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/b7.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/b8.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/b9.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/c1.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/c2.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/c3.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/c4.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/c5.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/c6.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/c7.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/c8.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/c9.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/i1.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/i2.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/i3.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/i4.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/i5.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/i6.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/i7.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/i8.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/i9.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/p1.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/p2.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/p3.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/p4.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/p5.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/p6.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/p7.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/p8.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/p9.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/l1.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/l2.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/l3.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/l4.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/l5.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/l6.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/l7.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/l8.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/l9.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/f1.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/f2.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/f3.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/f4.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/f5.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/f6.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/f7.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/f8.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/f9.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/w10.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/w11.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/w12.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/w13.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/m10.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/m11.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/m12.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/m13.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/b10.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/b11.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/b12.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/c10.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/c11.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/c12.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/i10.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/i11.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/i12.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/i13.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/p10.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/p11.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/p12.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/l10.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/l11.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/l12.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/l13.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/f10.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/f11.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wantprompt.com/prompt/f12.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

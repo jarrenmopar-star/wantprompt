@@ -43,6 +43,9 @@ The complete text of all 100 prompts is in [llms-full.txt](https://wantprompt.co
 - [AI Prompts for Real Estate Agents](https://wantprompt.com/ai-prompts-for-real-estate-agents.html): Listing descriptions, follow-ups, social posts, objection handling.
 - [AI Prompts for Students](https://wantprompt.com/ai-prompts-for-students.html): Studying, essay outlines, practice exams, flashcards.
 - [Best Free AI Prompt Libraries](https://wantprompt.com/best-free-ai-prompt-libraries.html): Honest comparison of free prompt libraries — pricing, signup, curation, and what to watch out for.
+- [Prompt Builder](https://wantprompt.com/prompt-builder.html): Build a structured prompt in 30 seconds from goal, topic, audience, tone, and format.
+- [Prompt Packs](https://wantprompt.com/packs/small-business-starter.html): Curated 10-prompt packs for small business, content creators, and job seekers.
+- Every prompt also has its own page, e.g. https://wantprompt.com/prompt/w1.html (100 pages, all in the sitemap).
 
 ## FAQ (short version)
 

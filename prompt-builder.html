@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Prompt Builder — Build a Better Prompt in 30 Seconds — WantPrompt</title>
+<meta name="description" content="Free AI prompt builder: pick your goal, topic, audience, tone and format, and get a structured prompt built on the role + task + constraints + format formula. Copy it into ChatGPT, Claude or Gemini.">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"AI Prompt Builder — Build a Better Prompt in 30 Seconds","description":"Free AI prompt builder: pick your goal, topic, audience, tone and format, and get a structured prompt built on the role + task + constraints + format formula.","author":{"@type":"Organization","name":"WantPrompt"},"publisher":{"@type":"Organization","name":"WantPrompt","url":"https://wantprompt.com/"},"mainEntityOfPage":"https://wantprompt.com/prompt-builder.html"}</script>
+<style>.article{max-width:720px;margin:0 auto;padding:28px 18px 60px;line-height:1.7}.article h1{font-size:30px;line-height:1.25;margin:6px 0 4px}.article .dek{color:var(--muted);font-size:17px;margin:0 0 24px}.article h2{font-size:20px;margin:28px 0 8px}.article p{margin:0 0 14px}.builder{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:12px;margin:0 0 14px}.builder label{font-size:13px;font-weight:700;color:var(--amber)}.builder input,.builder select,.builder textarea{background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:10px 12px;font-size:14px;font-family:inherit}.builder input:focus,.builder select:focus,.builder textarea:focus{border-color:var(--accent);outline:none}.prompt-box{background:var(--bg);border:1px solid var(--accent-dim);border-radius:12px;padding:16px;font-size:14px;white-space:pre-wrap;font-family:ui-monospace,Menlo,Consolas,monospace;margin:0 0 14px}.back{color:var(--muted);font-size:14px}.cta{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;margin:30px 0;text-align:center}</style>
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="logo" href="./">💡 Want<span>Prompt</span></a></div></header>
+<main class="article">
+<p><a class="back" href="./">← Back to the prompt library</a></p>
+<h1>AI Prompt Builder</h1>
+<p class="dek">Build a proper prompt in 30 seconds. Fill in the blanks — the builder assembles it using the formula every good prompt follows: role + task + constraints + format.</p>
+<div class="builder">
+  <label>What do you want the AI to do?</label>
+  <select id="bGoal">
+    <option value="Write">Write something</option>
+    <option value="Plan">Plan something</option>
+    <option value="Explain">Explain something</option>
+    <option value="Create marketing copy for">Create marketing copy</option>
+    <option value="Analyze">Analyze something</option>
+    <option value="Brainstorm ideas for">Brainstorm ideas</option>
+    <option value="Summarize">Summarize something</option>
+    <option value="Give feedback on">Give feedback</option>
+  </select>
+  <label>Topic — what is it about?</label>
+  <input id="bTopic" placeholder="e.g. a product launch email, my small bakery, the French Revolution">
+  <label>Audience — who is it for?</label>
+  <input id="bAudience" placeholder="e.g. busy parents, first-time buyers, my team">
+  <label>Tone</label>
+  <select id="bTone"><option>Professional</option><option>Friendly</option><option>Persuasive</option><option>Playful</option><option>Concise</option><option>Formal</option></select>
+  <label>Format — how should the answer look?</label>
+  <select id="bFormat"><option value="a structured outline with headings and bullet points">Structured outline</option><option value="a numbered step-by-step list">Numbered steps</option><option value="a table">Table</option><option value="short paragraphs">Short paragraphs</option><option value="a script with speaker cues">Script</option><option value="a draft I can edit, with 3 alternative versions">Draft + 3 alternatives</option></select>
+  <label>Length</label>
+  <select id="bLength"><option value="Keep it under 200 words.">Short (under 200 words)</option><option value="Aim for around 500 words.">Medium (around 500 words)</option><option value="Be thorough — cover the topic in full.">Long (thorough)</option></select>
+  <button class="btn primary" id="bBuild">Build my prompt →</button>
+</div>
+<h2>Your prompt</h2>
+<pre class="prompt-box" id="bOut">Fill in the blanks above and press "Build my prompt".</pre>
+<p><button class="btn primary" id="bCopy">📋 Copy prompt</button> <a class="btn" href="./">Browse the 100-prompt library →</a></p>
+<h2>Why this works</h2>
+<p>Most bad prompts are missing a piece: no role ("act as..."), no format ("give it as a table"), or no constraints ("under 200 words, for busy parents"). This builder forces all four in, which is the single biggest upgrade to the answers you get — the same formula behind every prompt in the <a href="./">WantPrompt library</a>.</p>
+<div class="cta"><p style="margin:0 0 10px"><strong>Want prompts already built for you?</strong> 100 hand-written prompts, free forever, no signup.</p><a class="btn primary" href="./">Browse the library →</a></div>
+<p>Related: <a href="./how-to-write-better-chatgpt-prompts.html">How to Write Better ChatGPT Prompts</a></p>
+</main>
+<footer><p>WantPrompt.com — free forever. Made for people who talk to AI.</p></footer>
+<script>
+function build(){
+  var goal=document.getElementById("bGoal").value,
+      topic=document.getElementById("bTopic").value.trim()||"[TOPIC]",
+      aud=document.getElementById("bAudience").value.trim()||"[AUDIENCE]",
+      tone=document.getElementById("bTone").value,
+      fmt=document.getElementById("bFormat").value,
+      len=document.getElementById("bLength").value;
+  return "Act as an expert "+goal.toLowerCase().replace("something","specialist")+".\n\n"+goal+" "+topic+" for "+aud+".\n\nTone: "+tone+". Format the answer as "+fmt+". "+len+"\n\nIf anything is unclear, state your assumption before answering.";
+}
+document.getElementById("bBuild").onclick=function(){document.getElementById("bOut").textContent=build();};
+["bGoal","bTopic","bAudience","bTone","bFormat","bLength"].forEach(function(id){
+  document.getElementById(id).addEventListener("input",function(){document.getElementById("bOut").textContent=build();});
+  document.getElementById(id).addEventListener("change",function(){document.getElementById("bOut").textContent=build();});
+});
+document.getElementById("bCopy").onclick=function(){var t=document.getElementById("bOut").textContent;navigator.clipboard.writeText(t).then(()=>{this.textContent="✓ Copied";var b=this;setTimeout(()=>b.textContent="📋 Copy prompt",1400);});};
+</script>
+</body>
+</html>
