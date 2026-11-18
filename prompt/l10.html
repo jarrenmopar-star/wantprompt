@@ -20,6 +20,7 @@
 <h2>The prompt</h2>
 <pre class="prompt-box">Explain [EVENT/PERIOD] as a timeline of the 8-10 key moments that mattered most. For each moment, give the date, what happened, and why it changed what came next. End with the one thing most people get wrong about it.</pre>
 <p><button class="btn primary" id="copyBtn">📋 Copy prompt</button> <a class="btn" href="../#p=l10">▶ Try it with free AI</a></p>
+<p class="ai-links">Run it in your AI: <a class="ai-link" data-ai="chatgpt" target="_blank" rel="noopener">ChatGPT</a> · <a class="ai-link" data-ai="claude" target="_blank" rel="noopener">Claude</a> · <a class="ai-link" data-ai="perplexity" target="_blank" rel="noopener">Perplexity</a></p>
 <h2>Fill in these parts</h2><ul><li><code>[EVENT/PERIOD]</code></li></ul>
 <h2>How to use it</h2>
 <p>Replace every <code>[BRACKETED]</code> part with your own details, then paste the result into ChatGPT, Claude, Gemini, or any AI chat tool — or run it right on WantPrompt with the built-in free AI. The more specific your replacements, the better the answer.</p>
@@ -32,6 +33,6 @@
 <div class="cta"><p style="margin:0 0 10px"><strong>Want 99 more like this?</strong> The full library is free, no signup.</p><a class="btn primary" href="../">Browse all 100 prompts →</a></div>
 </main>
 <footer><p>WantPrompt.com — free forever. Made for people who talk to AI. · <a href="../my-vault.html">My Vault</a></p></footer>
-<script>document.getElementById("copyBtn").onclick=function(){navigator.clipboard.writeText(document.querySelector(".prompt-box").textContent).then(()=>{this.textContent="✓ Copied";setTimeout(()=>this.textContent="📋 Copy prompt",1400);});};</script>
+<script>document.getElementById("copyBtn").onclick=function(){navigator.clipboard.writeText(document.querySelector(".prompt-box").textContent).then(()=>{this.textContent="✓ Copied";setTimeout(()=>this.textContent="📋 Copy prompt",1400);});};(function(){var t=document.querySelector(".prompt-box").textContent,q=encodeURIComponent(t);document.querySelectorAll(".ai-link").forEach(function(a){a.href=(a.dataset.ai==="chatgpt"?"https://chatgpt.com/?q=":a.dataset.ai==="claude"?"https://claude.ai/new?q=":"https://www.perplexity.ai/search?q=")+q;});var b=document.getElementById("imgGenBtn");if(b){b.onclick=function(){var img=document.getElementById("imgOut");img.hidden=false;img.src="https://image.pollinations.ai/prompt/"+q+"?width=1024&height=1024&model=flux&nologo=true&seed="+Math.floor(Math.random()*1000000);b.textContent="↻ New variation";};}})();</script>
 </body>
 </html>
