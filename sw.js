@@ -1,6 +1,6 @@
 /* WantPrompt service worker — offline app shell (library data + pages). AI runs still need network. */
 const CACHE = "wp-v1";
-const SHELL = ["./", "index.html", "styles.css", "app.js?v=7", "prompts.json?v=2", "manifest.json", "icon-192.png", "icon-512.png"];
+const SHELL = ["./", "index.html", "styles.css", "app.js?v=8", "prompts.json?v=2", "my-vault.html", "vault.js", "manifest.json", "icon-192.png", "icon-512.png"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
 });

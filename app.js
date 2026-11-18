@@ -31,7 +31,7 @@ async function vote(id, btn) {
 /* ---------- favorites ---------- */
 function loadFavs() { try { state.favs = new Set(JSON.parse(localStorage.getItem("wp_favs") || "[]")); } catch (e) {} }
 function saveFavs() { localStorage.setItem("wp_favs", JSON.stringify([...state.favs])); }
-function updateFavCount() { $("favCount").textContent = state.favs.size; }
+function updateFavCount() { $("favCount").textContent = state.favs.size; const vc = $("vaultCount"); if (vc) vc.textContent = state.favs.size + state.mine.length; }
 function esc(s) { return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 
 /* ---------- my prompts (saved in this browser) ---------- */

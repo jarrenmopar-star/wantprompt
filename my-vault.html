@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Vault — Save Your Prompts | WantPrompt</title>
+<meta name="description" content="Your saved prompts from WantPrompt, kept in your browser — no signup, no account. Copy them with one tap, fill in the variables, add your own.">
+<meta property="og:title" content="My Vault | WantPrompt">
+<meta property="og:description" content="Your saved prompts, in your browser. Copy, customize, export — no signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wantprompt.com/my-vault.html">
+<link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+<style>
+.vault-hero{max-width:1100px;margin:0 auto;padding:26px 20px 6px;text-align:center}
+.vault-hero h1{font-size:clamp(28px,5vw,40px);margin:0 0 8px;font-weight:800;letter-spacing:-.5px}
+.vault-hero h1 em{color:var(--accent);font-style:normal}
+.vault-hero p{color:var(--muted);margin:0 0 6px}
+.vault-tools{max-width:1100px;margin:14px auto 0;padding:0 20px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;align-items:center}
+.vault-tools .search-wrap{flex:1 1 280px;max-width:420px;margin:0}
+.filter-btn.active{background:var(--accent);color:#0a0f0a;border-color:var(--accent)}
+.used-tag{color:var(--muted);font-size:12.5px;font-weight:600}
+.card .vars{margin:10px 0 0}
+.card pre.prompt-preview{margin:10px 0 0}
+.card .var-actions{display:flex;gap:8px;margin-top:10px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="./">💡 Want<span>Prompt</span></a>
+    <div class="header-actions">
+      <a class="btn ghost" href="./" title="Back to the prompt library">← Library</a>
+      <button id="themeBtn" class="btn ghost" title="Toggle light / dark mode">☀️ Light</button>
+    </div>
+  </div>
+  <div class="vault-hero">
+    <h1>My <em>Vault</em></h1>
+    <p>Every prompt you've saved from the library, plus your own — kept in this browser only. No signup, no account, nothing leaves your device.</p>
+    <p class="trust-strip">♥ a prompt anywhere on the site and it shows up here · Copy with one tap · Fill in the [variables] first if you like</p>
+  </div>
+  <div class="vault-tools">
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search your vault…" autocomplete="off" aria-label="Search your vault">
+    </div>
+    <button class="tool-btn filter-btn active" data-filter="all">All saved</button>
+    <button class="tool-btn filter-btn" data-filter="favs">♥ Favorites</button>
+    <button class="tool-btn filter-btn" data-filter="mine">My prompts</button>
+    <select class="tool-select" id="sortSel" title="Sort saved prompts">
+      <option value="used">Sort: Most used</option>
+      <option value="newest">Sort: Newest</option>
+      <option value="az">Sort: A–Z</option>
+    </select>
+    <button class="tool-btn" id="addBtn">＋ Add a prompt</button>
+    <button class="tool-btn" id="exportBtn">⬇ Export</button>
+    <label class="tool-btn" for="importFile">⬆ Import</label><input type="file" id="importFile" accept=".json" hidden>
+  </div>
+  <div class="panel" id="addPanel" hidden>
+    <h3 id="addTitle">Add your own prompt</h3>
+    <p class="pane-hint">Saved in this browser only — no account needed. It shows up in your vault and in the library.</p>
+    <div class="panel-form">
+      <input id="vTitle" placeholder="Title — e.g. Meeting Notes Summarizer">
+      <select id="vCat"><option>Writing</option><option>Marketing</option><option>Business</option><option>Coding</option><option>Images</option><option>Productivity</option><option>Learning</option><option>Fun</option></select>
+      <input id="vDesc" placeholder="Short description — what does it do?">
+      <textarea id="vPrompt" rows="4" placeholder="The prompt itself. Use [BRACKETS] for fill-in parts, e.g. Summarize [TOPIC] for [AUDIENCE]."></textarea>
+      <div><button class="btn primary" id="vSave">Save my prompt</button> <button class="btn ghost" id="vCancel">Cancel</button></div>
+      <span class="panel-status" id="vStatus"></span>
+    </div>
+  </div>
+  <nav class="cats" id="cats" aria-label="Categories"></nav>
+</header>
+
+<main>
+  <div class="result-meta"><span id="resultCount"></span><span id="activeFilter"></span></div>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" hidden>
+    <p>🔒 Your vault is empty.</p>
+    <p>Browse the library and tap ♥ on any prompt to save it here — or add your own above.</p>
+    <p><a class="btn primary" href="./">Browse all 100 prompts →</a></p>
+  </div>
+  <div class="empty" id="noMatch" hidden>
+    <p>😶 Nothing in your vault matches that.</p>
+    <button class="btn" id="clearSearch">Clear search</button>
+  </div>
+</main>
+
+<footer>
+  <p>WantPrompt.com — free forever. Made for people who talk to AI.</p>
+  <p class="fine">Guides: <a href="how-to-write-better-chatgpt-prompts.html">How to Write Better ChatGPT Prompts</a> · <a href="best-ai-prompts-for-small-business.html">AI Prompts for Small Business</a> · <a href="ai-prompts-for-marketing.html">AI Prompts for Marketing</a> · <a href="ai-prompts-for-job-seekers.html">AI Prompts for Job Seekers</a> · <a href="ai-prompts-for-real-estate-agents.html">AI Prompts for Real Estate Agents</a> · <a href="ai-prompts-for-students.html">AI Prompts for Students</a> · <a href="best-free-ai-prompt-libraries.html">Best Free AI Prompt Libraries</a> · <a href="prompt-builder.html">Prompt Builder</a> · <a href="my-vault.html">My Vault</a> · <a href="packs/small-business-starter.html">Prompt Packs</a> · <a href="about.html">About</a> · <a href="faq.html">FAQ</a> · <a href="privacy.html">Privacy</a></p>
+  <p class="fine">Saved prompts live in your browser only — clearing browser data clears your vault. Export a backup from the toolbar above. · <a href="mailto:hello@wantprompt.com?subject=Interested%20in%20wantprompt.com">Interested in acquiring this site?</a></p>
+</footer>
+
+<script src="vault.js"></script>
+</body>
+</html>

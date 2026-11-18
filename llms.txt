@@ -58,6 +58,7 @@ The complete text of all 100 prompts is in [llms-full.txt](https://wantprompt.co
 ## Site
 
 - [Prompt library](https://wantprompt.com/): 100 prompts across 8 categories, searchable, with favorites saved in your browser.
+- [My Vault](https://wantprompt.com/my-vault.html): your saved prompts and your own, in your browser — search, sort by most used, fill in variables and copy, export a backup. No signup.
 - [About](https://wantprompt.com/about.html): What WantPrompt is and why it exists.
 - [FAQ](https://wantprompt.com/faq.html): Full frequently asked questions.
 - [Privacy](https://wantprompt.com/privacy.html): What data the site collects (almost none).
