@@ -131,6 +131,7 @@
         <button class="btn" id="modalShare">🔗 Share link</button>
       </div>
       <div class="copied-tip" id="copiedTip" hidden>Copied! Paste it into ChatGPT, Claude, Gemini…</div>
+      <div class="ai-links" id="modalAiLinks"></div>
     </div>
 
     <div class="tabpane" id="pane-run" hidden>
@@ -145,6 +146,15 @@
       <div class="ai-status" id="runStatus" hidden><span class="spinner"></span><span id="runStatusText">Thinking…</span></div>
       <pre class="ai-output" id="runOutput" hidden></pre>
       <div class="ai-error" id="runError" hidden></div>
+      <div id="imgGen" hidden>
+        <p class="pane-hint">Or render it as an image with free image AI:</p>
+        <div class="run-controls">
+          <button class="btn primary" id="imgGenBtn">🎨 Generate image</button>
+          <button class="btn ghost" id="imgNew" hidden>↻ New variation</button>
+        </div>
+        <div class="ai-status" id="imgStatus" hidden></div>
+        <img id="imgOut" hidden alt="AI-generated image">
+      </div>
     </div>
 
     <div class="tabpane" id="pane-agent" hidden>
@@ -160,6 +170,6 @@
   </div>
 </div>
 
-<script src="app.js?v=8"></script>
+<script src="app.js?v=9"></script>
 </body>
 </html>

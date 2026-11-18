@@ -43,6 +43,7 @@
 <h2>Your prompt</h2>
 <pre class="prompt-box" id="bOut">Fill in the blanks above and press "Build my prompt".</pre>
 <p><button class="btn primary" id="bCopy">📋 Copy prompt</button> <a class="btn" href="./">Browse the 100-prompt library →</a></p>
+<p class="ai-links" id="bAiLinks"></p>
 <h2>Why this works</h2>
 <p>Most bad prompts are missing a piece: no role ("act as..."), no format ("give it as a table"), or no constraints ("under 200 words, for busy parents"). This builder forces all four in, which is the single biggest upgrade to the answers you get — the same formula behind every prompt in the <a href="./">WantPrompt library</a>.</p>
 <div class="cta"><p style="margin:0 0 10px"><strong>Want prompts already built for you?</strong> 100 hand-written prompts, free forever, no signup.</p><a class="btn primary" href="./">Browse the library →</a></div>
@@ -59,10 +60,15 @@ function build(){
       len=document.getElementById("bLength").value;
   return "Act as an expert "+goal.toLowerCase().replace("something","specialist")+".\n\n"+goal+" "+topic+" for "+aud+".\n\nTone: "+tone+". Format the answer as "+fmt+". "+len+"\n\nIf anything is unclear, state your assumption before answering.";
 }
-document.getElementById("bBuild").onclick=function(){document.getElementById("bOut").textContent=build();};
+function aiLinks(t){
+  var q=encodeURIComponent(t);
+  return 'Run it in your AI: <a href="https://chatgpt.com/?q='+q+'" target="_blank" rel="noopener">ChatGPT</a> · <a href="https://claude.ai/new?q='+q+'" target="_blank" rel="noopener">Claude</a> · <a href="https://www.perplexity.ai/search?q='+q+'" target="_blank" rel="noopener">Perplexity</a>';
+}
+function refreshLinks(){var t=document.getElementById("bOut").textContent;document.getElementById("bAiLinks").innerHTML=t.indexOf("[TOPIC]")===-1&&t.indexOf("Fill in the blanks")!==0?aiLinks(t):"";}
+document.getElementById("bBuild").onclick=function(){document.getElementById("bOut").textContent=build();refreshLinks();};
 ["bGoal","bTopic","bAudience","bTone","bFormat","bLength"].forEach(function(id){
-  document.getElementById(id).addEventListener("input",function(){document.getElementById("bOut").textContent=build();});
-  document.getElementById(id).addEventListener("change",function(){document.getElementById("bOut").textContent=build();});
+  document.getElementById(id).addEventListener("input",function(){document.getElementById("bOut").textContent=build();refreshLinks();});
+  document.getElementById(id).addEventListener("change",function(){document.getElementById("bOut").textContent=build();refreshLinks();});
 });
 document.getElementById("bCopy").onclick=function(){var t=document.getElementById("bOut").textContent;navigator.clipboard.writeText(t).then(()=>{this.textContent="✓ Copied";var b=this;setTimeout(()=>b.textContent="📋 Copy prompt",1400);});};
 </script>

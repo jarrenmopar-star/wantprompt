@@ -152,9 +152,40 @@ async function aiChat(messages, onStatus, onToken) {
   }
   throw lastErr;
 }
-function aiErrorHTML() {
+function aiErrorHTML(filled) {
+  let links = "";
+  if (filled) links = "<br>" + aiLinksHTML(filled);
   return "⚠️ The free AI stayed busy after several tries. " +
-    "Wait a minute and tap Run again — or copy the prompt and run it in ChatGPT / Claude / Gemini instead.";
+    "Wait a minute and tap Run again — or run it in your own AI instead." + links;
+}
+
+/* ---------- run it in your own AI (deep links, pre-filled) ---------- */
+function aiLinksHTML(text) {
+  const q = encodeURIComponent(text);
+  return 'Run it in your AI: <a href="https://chatgpt.com/?q=' + q + '" target="_blank" rel="noopener">ChatGPT</a> · ' +
+    '<a href="https://claude.ai/new?q=' + q + '" target="_blank" rel="noopener">Claude</a> · ' +
+    '<a href="https://www.perplexity.ai/search?q=' + q + '" target="_blank" rel="noopener">Perplexity</a>';
+}
+function syncAiLinks() {
+  const p = getPrompt(); if (!p) return;
+  $("modalAiLinks").innerHTML = aiLinksHTML(fillVars(p, currentValues(p)));
+}
+
+/* ---------- free image generation (Images prompts) ---------- */
+function imgGenURL(text) {
+  return "https://image.pollinations.ai/prompt/" + encodeURIComponent(text) +
+    "?width=1024&height=1024&model=flux&nologo=true&seed=" + Math.floor(Math.random() * 1000000);
+}
+function generateImage() {
+  const p = getPrompt(); if (!p) return;
+  const filled = fillVars(p, currentValues(p));
+  const img = $("imgOut"), st = $("imgStatus");
+  st.hidden = false; st.textContent = "🎨 Generating your image…"; st.className = "ai-status";
+  img.hidden = true; $("imgNew").hidden = true;
+  const url = imgGenURL(filled);
+  img.onload = () => { st.hidden = true; img.hidden = false; $("imgNew").hidden = false; };
+  img.onerror = () => { st.textContent = "⚠️ Image generation failed — try again in a moment."; st.className = "ai-error"; st.hidden = false; };
+  img.src = url;
 }
 
 /* ---------- variables ---------- */
@@ -267,12 +298,13 @@ function openModal(id, tab) {
     wrap.innerHTML = "<label>[" + esc(v) + "]</label>";
     const inp = document.createElement("input");
     inp.placeholder = "Type to customize…";
-    inp.oninput = () => { $("modalText").textContent = fillVars(p, currentValues(p)); };
+    inp.oninput = () => { $("modalText").textContent = fillVars(p, currentValues(p)); syncAiLinks(); };
     wrap.appendChild(inp); varsBox.appendChild(wrap);
   });
   $("modalText").textContent = p.prompt;
   $("copiedTip").hidden = true;
-  syncModalFav();
+  syncModalFav(); syncAiLinks();
+  $("imgGen").hidden = p.category !== "Images";
   resetRunPane(); resetAgentPane();
   setTab(tab || "prompt");
   $("modalBackdrop").hidden = false;
@@ -299,6 +331,7 @@ async function copyText(text, btn) {
 function resetRunPane() {
   $("runStatus").hidden = true; $("runOutput").hidden = true;
   $("runError").hidden = true; $("runRegen").hidden = true; $("runCopyResp").hidden = true;
+  $("imgStatus").hidden = true; $("imgOut").hidden = true; $("imgNew").hidden = true;
   $("runBtn").disabled = false;
 }
 async function runPrompt() {
@@ -316,7 +349,7 @@ async function runPrompt() {
     $("runOutput").textContent = out; $("runOutput").hidden = false;
     $("runRegen").hidden = false; $("runCopyResp").hidden = false;
   } catch (err) {
-    $("runError").innerHTML = aiErrorHTML(); $("runError").hidden = false;
+    $("runError").innerHTML = aiErrorHTML(filled); $("runError").hidden = false;
   }
   $("runStatus").hidden = true; $("runBtn").disabled = false;
 }
@@ -378,7 +411,7 @@ async function runAgent() {
     $("agentCopyFinal").hidden = false;
     $("agentCopyFinal").onclick = e => copyText(final, e.target);
   } catch (err) {
-    $("agentError").innerHTML = aiErrorHTML(); $("agentError").hidden = false;
+    $("agentError").innerHTML = aiErrorHTML(filled); $("agentError").hidden = false;
     document.querySelectorAll(".agent-step.working").forEach(el => setStepState(el, "pending"));
   }
   $("agentBtn").disabled = false;
@@ -484,6 +517,8 @@ $("modalShare").onclick = e => {
 };
 $("runBtn").onclick = runPrompt;
 $("runRegen").onclick = runPrompt;
+$("imgGenBtn").onclick = generateImage;
+$("imgNew").onclick = generateImage;
 $("runCopyResp").onclick = e => copyText($("runOutput").textContent, e.target);
 $("agentBtn").onclick = runAgent;
 $("search").oninput = e => { state.q = e.target.value; state.favsOnly = false; render(); };
