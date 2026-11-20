@@ -172,20 +172,60 @@ function syncAiLinks() {
 }
 
 /* ---------- free image generation (Images prompts) ---------- */
-function imgGenURL(text) {
-  return "https://image.pollinations.ai/prompt/" + encodeURIComponent(text) +
+function imgGenURL(text, startUrl) {
+  let url = "https://image.pollinations.ai/prompt/" + encodeURIComponent(text) +
     "?width=1024&height=1024&model=flux&nologo=true&seed=" + Math.floor(Math.random() * 1000000);
+  if (startUrl) url += "&image=" + encodeURIComponent(startUrl);
+  return url;
 }
 function generateImage() {
   const p = getPrompt(); if (!p) return;
   const filled = fillVars(p, currentValues(p));
   const img = $("imgOut"), st = $("imgStatus");
+  const startUrl = ($("imgStartUrl") && $("imgStartUrl").value || "").trim();
   st.hidden = false; st.textContent = "🎨 Generating your image…"; st.className = "ai-status";
   img.hidden = true; $("imgNew").hidden = true;
-  const url = imgGenURL(filled);
+  const url = imgGenURL(filled, startUrl);
   img.onload = () => { st.hidden = true; img.hidden = false; $("imgNew").hidden = false; };
-  img.onerror = () => { st.textContent = "⚠️ Image generation failed — try again in a moment."; st.className = "ai-error"; st.hidden = false; };
+  img.onerror = () => { st.textContent = "⚠️ Image generation failed — check the image URL and try again in a moment."; st.className = "ai-error"; st.hidden = false; };
   img.src = url;
+}
+
+/* ---------- listen (text-to-speech, browser built-in, free) ---------- */
+let speaking = false;
+function speakText(text, btn) {
+  if (!("speechSynthesis" in window)) {
+    if (btn) { const o = btn.textContent; btn.textContent = "🔊 Not supported in this browser"; setTimeout(() => btn.textContent = o, 2500); }
+    return;
+  }
+  if (speaking) { speechSynthesis.cancel(); speaking = false; document.querySelectorAll(".listen-btn").forEach(b => b.textContent = "🔊 Listen"); return; }
+  const u = new SpeechSynthesisUtterance(text);
+  u.onend = u.onerror = () => { speaking = false; document.querySelectorAll(".listen-btn").forEach(b => b.textContent = "🔊 Listen"); };
+  speaking = true; if (btn) btn.textContent = "⏹ Stop";
+  speechSynthesis.speak(u);
+}
+
+/* ---------- dictate (speech-to-text, browser built-in, free) ---------- */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+function dictateInto(input, btn) {
+  if (!SR) {
+    const o = btn.textContent; btn.textContent = "🎤✕";
+    btn.title = "Voice input isn't supported in this browser — try Chrome or Edge";
+    setTimeout(() => { btn.textContent = o; }, 2500);
+    return;
+  }
+  const rec = new SR();
+  rec.lang = "en-US"; rec.interimResults = false; rec.maxAlternatives = 1;
+  btn.classList.add("listening"); btn.textContent = "●";
+  rec.onresult = e => { input.value = e.results[0][0].transcript; input.dispatchEvent(new Event("input", { bubbles: true })); };
+  rec.onend = rec.onerror = () => { btn.classList.remove("listening"); btn.textContent = "🎤"; };
+  try { rec.start(); } catch (e) { btn.classList.remove("listening"); btn.textContent = "🎤"; }
+}
+function micButton(input) {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "mic-btn"; b.textContent = "🎤"; b.title = "Dictate";
+  b.onclick = () => dictateInto(input, b);
+  return b;
 }
 
 /* ---------- variables ---------- */
@@ -299,7 +339,10 @@ function openModal(id, tab) {
     const inp = document.createElement("input");
     inp.placeholder = "Type to customize…";
     inp.oninput = () => { $("modalText").textContent = fillVars(p, currentValues(p)); syncAiLinks(); };
-    wrap.appendChild(inp); varsBox.appendChild(wrap);
+    const row = document.createElement("div");
+    row.className = "var-row";
+    row.appendChild(inp); row.appendChild(micButton(inp));
+    wrap.appendChild(row); varsBox.appendChild(wrap);
   });
   $("modalText").textContent = p.prompt;
   $("copiedTip").hidden = true;
@@ -330,8 +373,9 @@ async function copyText(text, btn) {
 /* ---------- Try with AI ---------- */
 function resetRunPane() {
   $("runStatus").hidden = true; $("runOutput").hidden = true;
-  $("runError").hidden = true; $("runRegen").hidden = true; $("runCopyResp").hidden = true;
+  $("runError").hidden = true; $("runRegen").hidden = true; $("runCopyResp").hidden = true; $("runListen").hidden = true;
   $("imgStatus").hidden = true; $("imgOut").hidden = true; $("imgNew").hidden = true;
+  if (speaking && "speechSynthesis" in window) { speechSynthesis.cancel(); speaking = false; }
   $("runBtn").disabled = false;
 }
 async function runPrompt() {
@@ -347,7 +391,7 @@ async function runPrompt() {
     ], t => { $("runStatus").hidden = false; $("runStatusText").textContent = t; },
     partial => { $("runOutput").textContent = partial; $("runOutput").hidden = false; $("runStatus").hidden = true; });
     $("runOutput").textContent = out; $("runOutput").hidden = false;
-    $("runRegen").hidden = false; $("runCopyResp").hidden = false;
+    $("runRegen").hidden = false; $("runCopyResp").hidden = false; $("runListen").hidden = false;
   } catch (err) {
     $("runError").innerHTML = aiErrorHTML(filled); $("runError").hidden = false;
   }
@@ -355,9 +399,11 @@ async function runPrompt() {
 }
 
 /* ---------- Agent mode ---------- */
+let agentFinal = "";
 function resetAgentPane() {
   $("agentSteps").innerHTML = ""; $("agentError").hidden = true;
-  $("agentCopyFinal").hidden = true; $("agentBtn").disabled = false;
+  $("agentCopyFinal").hidden = true; $("agentListen").hidden = true; $("agentBtn").disabled = false;
+  agentFinal = "";
 }
 function agentStepEl(n, title) {
   const d = document.createElement("div");
@@ -408,7 +454,8 @@ async function runAgent() {
       { role: "user", content: "Rewrite this draft, fixing every issue in the critique below. Output only the improved version.\n\nDRAFT:\n" + draft + "\n\nCRITIQUE:\n" + critique }
     ], agentStatus, agentToken);
     setStepState(s3, "done", final);
-    $("agentCopyFinal").hidden = false;
+    agentFinal = final;
+    $("agentCopyFinal").hidden = false; $("agentListen").hidden = false;
     $("agentCopyFinal").onclick = e => copyText(final, e.target);
   } catch (err) {
     $("agentError").innerHTML = aiErrorHTML(filled); $("agentError").hidden = false;
@@ -517,8 +564,11 @@ $("modalShare").onclick = e => {
 };
 $("runBtn").onclick = runPrompt;
 $("runRegen").onclick = runPrompt;
+$("runListen").onclick = e => speakText($("runOutput").textContent, e.target);
+$("agentListen").onclick = e => speakText(agentFinal, e.target);
 $("imgGenBtn").onclick = generateImage;
 $("imgNew").onclick = generateImage;
+$("mineMic").onclick = e => dictateInto($("minePrompt"), e.target);
 $("runCopyResp").onclick = e => copyText($("runOutput").textContent, e.target);
 $("agentBtn").onclick = runAgent;
 $("search").oninput = e => { state.q = e.target.value; state.favsOnly = false; render(); };

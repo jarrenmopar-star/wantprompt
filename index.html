@@ -52,6 +52,7 @@
         <select id="mineCat"><option>Writing</option><option>Marketing</option><option>Business</option><option>Coding</option><option>Images</option><option>Productivity</option><option>Learning</option><option>Fun</option></select>
         <input id="mineDesc" placeholder="Short description — what does it do?">
         <textarea id="minePrompt" rows="4" placeholder="The prompt itself. Use [BRACKETS] for fill-in parts, e.g. Summarize [TOPIC] for [AUDIENCE]."></textarea>
+        <button class="btn ghost" id="mineMic" type="button">🎤 Dictate prompt</button>
         <button class="btn primary" id="mineSave">Save my prompt</button>
         <span class="panel-status" id="mineStatus"></span>
       </div>
@@ -142,12 +143,14 @@
         <button class="btn primary" id="runBtn">▶ Run prompt</button>
         <button class="btn ghost" id="runRegen" hidden>↻ Regenerate</button>
         <button class="btn ghost" id="runCopyResp" hidden>📋 Copy response</button>
+        <button class="btn ghost listen-btn" id="runListen" hidden>🔊 Listen</button>
       </div>
       <div class="ai-status" id="runStatus" hidden><span class="spinner"></span><span id="runStatusText">Thinking…</span></div>
       <pre class="ai-output" id="runOutput" hidden></pre>
       <div class="ai-error" id="runError" hidden></div>
       <div id="imgGen" hidden>
         <p class="pane-hint">Or render it as an image with free image AI:</p>
+        <input id="imgStartUrl" class="img-url-input" placeholder="Start from an image — paste an image URL (optional)">
         <div class="run-controls">
           <button class="btn primary" id="imgGenBtn">🎨 Generate image</button>
           <button class="btn ghost" id="imgNew" hidden>↻ New variation</button>
@@ -162,6 +165,7 @@
       <div class="run-controls">
         <button class="btn primary" id="agentBtn">🤖 Run agent</button>
         <button class="btn ghost" id="agentCopyFinal" hidden>📋 Copy final</button>
+        <button class="btn ghost listen-btn" id="agentListen" hidden>🔊 Listen</button>
       </div>
       <div class="agent-steps" id="agentSteps"></div>
       <div class="ai-error" id="agentError" hidden></div>
@@ -170,6 +174,6 @@
   </div>
 </div>
 
-<script src="app.js?v=9"></script>
+<script src="app.js?v=10"></script>
 </body>
 </html>

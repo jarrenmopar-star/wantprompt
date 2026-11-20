@@ -29,7 +29,7 @@
     <option value="Give feedback on">Give feedback</option>
   </select>
   <label>Topic — what is it about?</label>
-  <input id="bTopic" placeholder="e.g. a product launch email, my small bakery, the French Revolution">
+  <div style="display:flex;gap:8px"><input id="bTopic" style="flex:1" placeholder="e.g. a product launch email, my small bakery, the French Revolution"><button class="btn" id="bTopicMic" type="button" title="Dictate">🎤</button></div>
   <label>Audience — who is it for?</label>
   <input id="bAudience" placeholder="e.g. busy parents, first-time buyers, my team">
   <label>Tone</label>
@@ -70,6 +70,15 @@ document.getElementById("bBuild").onclick=function(){document.getElementById("bO
   document.getElementById(id).addEventListener("input",function(){document.getElementById("bOut").textContent=build();refreshLinks();});
   document.getElementById(id).addEventListener("change",function(){document.getElementById("bOut").textContent=build();refreshLinks();});
 });
+document.getElementById("bTopicMic").onclick=function(){
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition, btn=this;
+  if(!SR){btn.textContent="🎤✕";btn.title="Voice input isn't supported in this browser — try Chrome or Edge";setTimeout(function(){btn.textContent="🎤";},2500);return;}
+  var rec=new SR(); rec.lang="en-US"; rec.interimResults=false; rec.maxAlternatives=1;
+  btn.textContent="●";
+  rec.onresult=function(e){var inp=document.getElementById("bTopic");inp.value=e.results[0][0].transcript;inp.dispatchEvent(new Event("input",{bubbles:true}));};
+  rec.onend=rec.onerror=function(){btn.textContent="🎤";};
+  try{rec.start();}catch(e){btn.textContent="🎤";}
+};
 document.getElementById("bCopy").onclick=function(){var t=document.getElementById("bOut").textContent;navigator.clipboard.writeText(t).then(()=>{this.textContent="✓ Copied";var b=this;setTimeout(()=>b.textContent="📋 Copy prompt",1400);});};
 </script>
 </body>

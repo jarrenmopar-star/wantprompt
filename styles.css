@@ -58,6 +58,14 @@ main{max-width:1100px;margin:0 auto;padding:10px 20px 60px}
 .empty{text-align:center;padding:60px 20px;color:var(--muted)}
 .ai-links{font-size:14px;color:var(--muted);margin:12px 0 4px}
 .ai-links a{color:var(--accent);font-weight:700}
+.var-row{display:flex;gap:8px;align-items:center}
+.var-row input{flex:1}
+.mic-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px 11px;font-size:14px;cursor:pointer;flex:none}
+.mic-btn:hover{border-color:var(--accent)}
+.mic-btn.listening{border-color:#e5484d;color:#e5484d;animation:micpulse 1s infinite}
+@keyframes micpulse{50%{opacity:.45}}
+.img-url-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:10px 12px;font-size:14px;margin:0 0 10px;box-sizing:border-box}
+.img-url-input:focus{border-color:var(--accent);outline:none}
 #imgGen{margin-top:18px}
 #imgOut{max-width:100%;border-radius:12px;border:1px solid var(--border);margin-top:12px;display:block}
 
